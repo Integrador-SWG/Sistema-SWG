@@ -18,22 +18,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `swg`.`datosfacturacion`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`datosfacturacion` (
-  `iddatosfacturacion` INT NOT NULL AUTO_INCREMENT ,
-  `razon` VARCHAR(45) NOT NULL ,
-  `rfc` VARCHAR(45) NOT NULL ,
-  `direccion` VARCHAR(45) NOT NULL ,
-  `cp` VARCHAR(45) NOT NULL ,
-  `municipio` VARCHAR(45) NOT NULL ,
-  `estado` VARCHAR(45) NOT NULL ,
-  `status` VARCHAR(2) NOT NULL ,
-  PRIMARY KEY (`iddatosfacturacion`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `swg`.`empresa`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `swg`.`empresa` (
@@ -42,10 +26,8 @@ CREATE  TABLE IF NOT EXISTS `swg`.`empresa` (
   `direccion` VARCHAR(45) NOT NULL ,
   `email` VARCHAR(45) NULL ,
   `idconfvista` INT NOT NULL ,
-  `iddatosfacturacion` INT NOT NULL ,
   PRIMARY KEY (`idempresa`) )
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `swg`.`nivel`
@@ -74,17 +56,21 @@ CREATE  TABLE IF NOT EXISTS `swg`.`empleados` (
   PRIMARY KEY (`idempleados`) )
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
--- Table `swg`.`confvistapro`
+-- Table `swg`.`datosfacturacion`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`confvistapro` (
-  `idconfvistapro` INT NOT NULL AUTO_INCREMENT ,
-  `rutaimagen` VARCHAR(100) NOT NULL ,
+CREATE  TABLE IF NOT EXISTS `swg`.`datosfacturacion` (
+  `iddatosfacturacion` INT NOT NULL AUTO_INCREMENT ,
+  `razon` VARCHAR(45) NOT NULL ,
+  `rfc` VARCHAR(45) NOT NULL ,
+  `direccion` VARCHAR(45) NOT NULL ,
+  `cp` VARCHAR(45) NOT NULL ,
+  `municipio` VARCHAR(45) NOT NULL ,
+  `estado` VARCHAR(45) NOT NULL ,
   `status` VARCHAR(2) NOT NULL ,
-  PRIMARY KEY (`idconfvistapro`) )
+  `idempresa` INT NOT NULL ,
+  PRIMARY KEY (`iddatosfacturacion`) )
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `swg`.`proveedor`
@@ -100,6 +86,7 @@ CREATE  TABLE IF NOT EXISTS `swg`.`proveedor` (
   PRIMARY KEY (`idproveedor`) )
 ENGINE = InnoDB;
 
+
 -- -----------------------------------------------------
 -- Table `swg`.`productos`
 -- -----------------------------------------------------
@@ -111,11 +98,10 @@ CREATE  TABLE IF NOT EXISTS `swg`.`productos` (
   `cantidad` INT NOT NULL ,
   `precio` DOUBLE NOT NULL ,
   `status` VARCHAR(2) NOT NULL ,
-  `idconfvistapro` INT NOT NULL ,
   `idproveedor` INT NOT NULL ,
   PRIMARY KEY (`idproductos`) )
 ENGINE = InnoDB;
-	
+
 -- -----------------------------------------------------
 -- Table `swg`.`altaproductos`
 -- -----------------------------------------------------
@@ -125,6 +111,18 @@ CREATE  TABLE IF NOT EXISTS `swg`.`altaproductos` (
   `idempleados` INT NOT NULL ,
   `idproductos` INT NOT NULL ,
   PRIMARY KEY (`idaltaproductos`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `swg`.`confvistapro`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `swg`.`confvistapro` (
+  `idconfvistapro` INT NOT NULL AUTO_INCREMENT ,
+  `rutaimagen` VARCHAR(100) NOT NULL ,
+  `status` VARCHAR(2) NOT NULL ,
+  `idproductos` INT NOT NULL ,
+  PRIMARY KEY (`idconfvistapro`) )
 ENGINE = InnoDB;
 
 
@@ -180,6 +178,7 @@ CREATE  TABLE IF NOT EXISTS `swg`.`factcliente` (
   PRIMARY KEY (`idfactcliente`) )
 ENGINE = InnoDB;
 
+
 -- -----------------------------------------------------
 -- Table `swg`.`tipocambio`
 -- -----------------------------------------------------
@@ -210,7 +209,7 @@ CREATE  TABLE IF NOT EXISTS `swg`.`compra` (
   PRIMARY KEY (`idcompra`) )
 ENGINE = InnoDB;
 
-
+ 
 -- -----------------------------------------------------
 -- Table `swg`.`cuentas`
 -- -----------------------------------------------------
@@ -224,40 +223,45 @@ CREATE  TABLE IF NOT EXISTS `swg`.`cuentas` (
   PRIMARY KEY (`idcuentas`) )
 ENGINE = InnoDB;
 
+--fk
 
--- USE `swg` ;
+alter Table empresa
+  add constraint 'fk_empresa_vista' foreign key ('idconfvista') references confvista('idconfvista'); 
 
--- fk
-alter table empresa
-	add constraint 'fk_empresa_confvista' foreign key ('idconfvista') references confvista ('idconfvista'),
-	add constraint 'fk_empresa_facturacion' foreign key ('iddatosfacturacion') references datosfacturacion ('iddatosfacturacion');
+alter Table empleados
+  add constraint 'fk_empleados_nivel' foreign key ('idnivel') references nivel ('idnivel'),
+  add constraint 'fk_empleados_empresa' foreign key ('idempresa') references empresa ('idempresa');  
 
-alter table empleados
-	add constraint 'fk_empleados_nivel' foreign key ('idnivel') references nivel ('idnivel'),
-	add constraint 'fk_empleados_empresa' foreign key ('idempresa') references empresa ('idempresa');
+alter table datosfacturacion
+  add constraint 'fk_facturacion_empresa' foreign key ('idempresa') references empresa ('idempresa');
 
 alter table productos
-	add constraint 'fk_productos_confvista' foreign key ('idconfvistapro') references confvistapro ('idconfvistapro'),
-	add constraint 'fk_empleados_proveedor' foreign key ('idproveedor') references proveedor ('idproveedor');
+  add constraint 'fk_productos_proveedor' foreign key ('idproveedor') references proveedor ('idproveedor');
 
 alter table altaproductos
-	add constraint 'fk_altaproductos_empleados' foreign key ('idempleados') references empleados('idempleados'),
-	add constraint 'fk_altaproductos_productos' foreign key ('idproductos') references productos ('idproductos');
+  add constraint 'fk_alta_empleados' foreign key ('idempleados') references empleados ('idempleados'),
+  add constraint 'fk_alta_productos' foreign key ('idproductos') references productos ('idproductos');
+
+  alter table confvistapro
+  add constraint 'fk_vistapro_productos' foreign key ('idproductos') references productos ('idproductos');
 
 alter table direccioncliente
-	add constraint 'fk_direccion_cliente' foreign key ('idcliente') references cliente ('idcliente');
+  add constraint 'fk_direccion_cliente' foreign key ('idcliente') references cliente ('idcliente');
 
 alter table factcliente
-	add constraint 'fk_factura_cliente' foreign key ('idcliente') references cliente ('idcliente');	
+  add constraint 'fk_factura_cliente' foreign key ('idcliente') references cliente ('idcliente');
 
 alter table compra
-	add constraint 'fk_compra_cliente' foreign key ('idcliente') references cliente ('idcliente'),
-	add constraint 'fk_compra_productos' foreign key ('idproductos') references productos ('idproductos'),
-	add constraint 'fk_compra_cambio' foreign key ('idtipocambio') references tipocambio ('tipocambio');
-	
-alter table cuentas
-	add constraint 'fk_cuentas_empresa' foreign key ('idempresa') references empresa ('idempresa');
-	
+  add constraint 'fk_compra_cliente' foreign key ('idcliente') references cliente ('idcliente'),
+  add constraint 'fk_compra_productos' foreign key ('idproductos') references productos ('idproductos'),
+  add constraint 'fk_compra_cambio' foreign key ('idtipocambio') references tipocambio ('idtipocambio');
+
+alter table cuenta
+  add constraint 'fk_cuentas_empresa' foreign key ('idempresa') references empresa ('idempresa');
+
+--USE `swg` ;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
