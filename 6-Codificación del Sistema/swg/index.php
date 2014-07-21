@@ -1,3 +1,91 @@
+<?php 
+  
+  require 'basedatos.php';
+
+  if ( !empty($_POST)) {
+    // keep track validation errors
+    $nombreError = null;
+    $apellidoError = null;
+    $telefonoError = null;
+    $emailError = null;
+    $tituloError = null;
+    $userError = null;
+    $passError = null;
+    $statusError = null;
+    
+    // keep track post values
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $telefono = $_POST['telefono'];
+    $email = $_POST['email'];
+    $titulo = $_POST['titulo'];
+    $user = $_POST['user'];
+    $pass = $_POST['pass'];
+    $status = $_POST['status'];
+    
+    // validate input
+    $valid = true;
+    if (empty($nombre)) {
+      $nombreError = 'Por favor, ingrese un nombre!';
+      $valid = false;
+    }
+
+    if (empty($apellido)) {
+      $apellidoError = 'Por favor, ingrese un apellido!';
+      $valid = false;
+    }
+
+    if (empty($telefono)) {
+      $telefonoError = 'Por favor, ingrese un teléfono celular!';
+      $valid = false;
+    } elseif (!filter_var(is_numeric($telefono)) ) {
+      $telefonoError = 'Por favor, ingrese numeros';
+      $valid = false;
+    }
+    
+    if (empty($email)) {
+      $emailError = 'Por favor, ingrese un correo electrónico!';
+      $valid = false;
+    } else if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
+      $emailError = 'Por favor, ingrese un correo electrónico válido!';
+      $valid = false;
+    }
+
+    if (empty($titulo)) {
+      $tituloError = 'Por favor, ingrese un titulo!';
+      $valid = false;
+    }
+
+    if (empty($user)) {
+      $userError = 'Por favor, ingrese un usuario!';
+      $valid = false;
+    }
+
+    if (empty($pass)) {
+      $passError = 'Por favor, ingrese una contraseña!';
+      $valid = false;
+    }
+
+    if (empty($status)) {
+      $statusError = 'Por favor, ingrese una estatus!';
+      $valid = false;
+    }
+
+    
+    // insert data
+    if ($valid) {
+      $pdo = Database::connect();
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $sql = "INSERT INTO cliente (nombre,apellido,telefono,email,titulo,user,pass,status) values(?, ?, ?, ?, ?, ?, ?, ?)";
+      $q = $pdo->prepare($sql);
+      $q->execute(array($nombre,$apellido,$telefono,$email,$titulo,$user,$pass,$status));
+      Database::disconnect();
+      header("Location: quienessomos.html");
+    }
+  }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,10 +133,10 @@
           <!--<a class="brand" href="index.html"><img src="ico/favicon1.png"></a>-->
           <!--<img src='ico/favicon1.png' width='25' height='25'>-->
           <!--<a class="brand" href="index.html"><img src='ico/favicon1.png' width='32' height='32' title='SWG' border='0'></a>-->
-          <a class="brand" href="index.html"><img src='ico/favicon1.png' title='SWG' border='0'></a>
+          <a class="brand" href="index.php"><img src='ico/favicon1.png' title='SWG' border='0'></a>
           <div class="nav-collapse collapse">
             <ul class="nav" >
-              <li class="active"><a href="index.html">Inicio</a></li>
+              <li class="active"><a href="index.php">Inicio</a></li>
               <li><a href="quienessomos.html">¿Quiénes Somos?</a></li>
               <li><a href="contacto.html">Contacto</a></li>
               <li><a href="productos.html">Productos</a></li>
@@ -207,11 +295,110 @@
             			<h3>Registrarse a SWG</h3>
           		</div>
         <div class="modal-body">
-            	<form method="post" action='' name="login_form">		
-            		<p><input type="text" class="span3" name="nid" id="nombre" placeholder="Nombre"></p>
+            	<form method="post" action='index.php' name="login_form">		
+
+              <!--Inicia cuadros de texto-->
+
+              
+              <div class="control-group <?php echo !empty($nombreError)?'error':'';?>">
+              <label class="control-label">Nombre</label>
+              <div class="controls">
+              
+                  <input name="nombre" type="text"  placeholder="Nombre" value="<?php echo !empty($nombre)?$nombre:'';?>">
+                  <?php if (!empty($nombreError)): ?>
+                    <span class="help-inline"><?php echo $nombreError;?></span>
+                  <?php endif; ?>
+              </div>
+            </div>
+
+            <div class="control-group <?php echo !empty($apellidoError)?'error':'';?>">
+              <label class="control-label">Apellido</label>
+              <div class="controls">
+              
+                  <input name="apellido" type="text"  placeholder="Apellido" value="<?php echo !empty($apellido)?$apellido:'';?>">
+                  <?php if (!empty($apellidoError)): ?>
+                    <span class="help-inline"><?php echo $apellidoError;?></span>
+                  <?php endif; ?>
+              </div>
+            </div>
+
+            <div class="control-group <?php echo !empty($telefonoError)?'error':'';?>">
+              <label class="control-label">Teléfono Celular</label>
+              <div class="controls">
+                  <input name="telefono" type="text"  placeholder="Teléfono Celular (Máximo 10 dígitos)" value="<?php echo !empty($telefono)?$telefono:'';?>">
+                  <?php if (!empty($telefonoError)): ?>
+                    <span class="help-inline"><?php echo $telefonoError;?></span>
+                  <?php endif;?>
+              </div>
+            </div>
+
+            <div class="control-group <?php echo !empty($emailError)?'error':'';?>">
+              <label class="control-label">Correo Electrónico</label>
+              <div class="controls">
+                  <input name="email" type="text" placeholder="Correo Electrónico" value="<?php echo !empty($email)?$email:'';?>">
+                  <?php if (!empty($emailError)): ?>
+                    <span class="help-inline"><?php echo $emailError;?></span>
+                  <?php endif;?>
+              </div>
+            </div>
+
+            <div class="control-group <?php echo !empty($tituloError)?'error':'';?>">
+              <label class="control-label">Titulo</label>
+              <div class="controls">
+              
+                  <input name="titulo" type="text"  placeholder="Titulo" value="<?php echo !empty($titulo)?$titulo:'';?>">
+                  <?php if (!empty($tituloError)): ?>
+                    <span class="help-inline"><?php echo $tituloError;?></span>
+                  <?php endif; ?>
+              </div>
+            </div>
+
+            <div class="control-group <?php echo !empty($userError)?'error':'';?>">
+              <label class="control-label">Usuario</label>
+              <div class="controls">
+              
+                  <input name="user" type="text"  placeholder="Usuario" value="<?php echo !empty($user)?$user:'';?>">
+                  <?php if (!empty($userError)): ?>
+                    <span class="help-inline"><?php echo $userError;?></span>
+                  <?php endif; ?>
+              </div>
+            </div>
+
+            <div class="control-group <?php echo !empty($passError)?'error':'';?>">
+              <label class="control-label">Contraseña</label>
+              <div class="controls">
+              
+                  <input name="pass" type="text"  placeholder="Contraseña" value="<?php echo !empty($pass)?$pass:'';?>">
+                  <?php if (!empty($passError)): ?>
+                    <span class="help-inline"><?php echo $passError;?></span>
+                  <?php endif; ?>
+              </div>
+            </div>
+
+            <div class="control-group <?php echo !empty($statusError)?'error':'';?>">
+              <label class="control-label">Estatus</label>
+              <div class="controls">
+              
+                  <input name="status" type="text"  placeholder="Estatus" value="<?php echo !empty($status)?$status:'';?>">
+                  <?php if (!empty($statusError)): ?>
+                    <span class="help-inline"><?php echo $statusError;?></span>
+                  <?php endif; ?>
+              </div>
+            </div>
+
+            
+
+            <!--Termina cuadros de texto-->
+
+                <!--<p><input type="text" class="span3" name="nid" id="nombre" placeholder="Nombre"></p>
+                <p><input type="text" class="span3" name="aid" id="apellido" placeholder="Apellido"></p>
+                <p><input type="tel" maxlenght="10" class="span3" name="cid" id="celular" placeholder="Teléfono Celular"></p>
+                <p><input type="email" class="span3" name="eid" id="email" placeholder="Correo Electrónico"></p>
+                <p><input type="text" class="span3" name="tid" id="titulo" placeholder="Titulo"></p>
+                <p><input type="text" class="span3" name="uid" id="usuario" placeholder="Usuario"></p>
             		<p><input type="password" class="span3" name="passwd" placeholder="Contraseña"></p>
-              		<p><input type="text" class="span3" name="eid" id="email" placeholder="Correo Electrónico"></p>
-              		<p><input type="text" class="span3" name="cid" id="celular" placeholder="Teléfono Celular"></p>
+                <p><input type="text" class="span3" name="eid" id="estatus" placeholder="Estatus"></p>-->
+              	
               		<p><button type="submit" class="btn btn-primary">Registrarse</button></p>
             	</form>
         </div>
