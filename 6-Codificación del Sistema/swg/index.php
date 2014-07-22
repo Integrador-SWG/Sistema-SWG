@@ -1,93 +1,5 @@
-<?php 
-  
-  require 'basedatos.php';
-
-  if ( !empty($_POST)) {
-    // keep track validation errors
-    $nombreError = null;
-    $apellidoError = null;
-    $telefonoError = null;
-    $emailError = null;
-    $tituloError = null;
-    $userError = null;
-    $passError = null;
-    $statusError = null;
-    
-    // keep track post values
-    $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
-    $telefono = $_POST['telefono'];
-    $email = $_POST['email'];
-    $titulo = $_POST['titulo'];
-    $user = $_POST['user'];
-    $pass = $_POST['pass'];
-    $status = $_POST['status'];
-    
-    // validate input
-    $valid = true;
-    if (empty($nombre)) {
-      $nombreError = 'Por favor, ingrese un nombre!';
-      $valid = false;
-    }
-
-    if (empty($apellido)) {
-      $apellidoError = 'Por favor, ingrese un apellido!';
-      $valid = false;
-    }
-
-    if (empty($telefono)) {
-      $telefonoError = 'Por favor, ingrese un teléfono celular!';
-      $valid = false;
-    } elseif (!filter_var(is_numeric($telefono)) ) {
-      $telefonoError = 'Por favor, ingrese numeros';
-      $valid = false;
-    }
-    
-    if (empty($email)) {
-      $emailError = 'Por favor, ingrese un correo electrónico!';
-      $valid = false;
-    } else if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
-      $emailError = 'Por favor, ingrese un correo electrónico válido!';
-      $valid = false;
-    }
-
-    if (empty($titulo)) {
-      $tituloError = 'Por favor, ingrese un titulo!';
-      $valid = false;
-    }
-
-    if (empty($user)) {
-      $userError = 'Por favor, ingrese un usuario!';
-      $valid = false;
-    }
-
-    if (empty($pass)) {
-      $passError = 'Por favor, ingrese una contraseña!';
-      $valid = false;
-    }
-
-    if (empty($status)) {
-      $statusError = 'Por favor, ingrese una estatus!';
-      $valid = false;
-    }
-
-    
-    // insert data
-    if ($valid) {
-      $pdo = Database::connect();
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = "INSERT INTO cliente (nombre,apellido,telefono,email,titulo,user,pass,status) values(?, ?, ?, ?, ?, ?, ?, ?)";
-      $q = $pdo->prepare($sql);
-      $q->execute(array($nombre,$apellido,$telefono,$email,$titulo,$user,$pass,$status));
-      Database::disconnect();
-      header("Location: quienessomos.html");
-    }
-  }
-?>
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <title>SWG</title>
@@ -111,11 +23,7 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">
   </head>
 
   <body>
@@ -128,11 +36,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <!--<a href="ejemplo.html"> <img src ="nombreimagen.jpg"></a> -->
-          <!--<a class="brand" href="index.html">SWG</a>-->
-          <!--<a class="brand" href="index.html"><img src="ico/favicon1.png"></a>-->
-          <!--<img src='ico/favicon1.png' width='25' height='25'>-->
-          <!--<a class="brand" href="index.html"><img src='ico/favicon1.png' width='32' height='32' title='SWG' border='0'></a>-->
+  
           <a class="brand" href="index.php"><img src='ico/favicon1.png' title='SWG' border='0'></a>
           <div class="nav-collapse collapse">
             <ul class="nav" >
@@ -141,6 +45,7 @@
               <li><a href="contacto.html">Contacto</a></li>
               <li><a href="productos.html">Productos</a></li>
               <li><a href="layout.html">Layout</a></li>
+              <li><a href="listarclientes.php">Listar Clientes</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Despegable <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -155,20 +60,17 @@
               </li>
             </ul>
             <form class="navbar-form pull-right">
-  				<a class="btn" data-toggle="modal" href="#myAcceder" >Acceder</a>
-  				<a class="btn btn-primary" data-toggle="modal" href="#myRegistrarse" >Registrarse</a>
+              <a href="accedersesion.php" class="btn">Acceder</a>
+              <a href="altacliente.php" class="btn btn-primary">Registrarse</a>
             </form>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
-
-
 <div class="container">
 
-    <!--Inicio Carousel-->
-    <div class="container">
+    <!--Inicio Carousel-->    
       <section id="myCarousel" class="carousel slide">
           <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -221,9 +123,9 @@
           <p align="justify">Distribuidor nacional de suplementos deportivos en México. Proveemos suplementos deportivos a los minoristas de especialidad, sitios de Internet y centros de salud desde hace 11 años. Contamos con más de 100 laboratorios haciendo una variedad mayor a los 800 productos. Somos distribuidores autorizados de 6 líneas de suplementos deportivos. Eso significa que no tenemos sólo unos pocos productos conocidos. Mantenemos un amplio inventario de todas nuestras líneas de productos más vendidos del mercado americano. Convenios a consignación para distribuidores y ofertas especiales en membresías de gimnasios de la localidad para cliente convencional, lo que hace un avance físico constante en nuestros consumidores.</p>
         </div>
       </div>
-      <hr>
       <!-- Final Fila 1-->
 
+      <hr>
 
       <!-- Example row of columns -->
 
@@ -232,7 +134,8 @@
           <h2>Vídeo del día</h2>
 
           <div class="js-video [vimeo, widescreen]">
-              <iframe width="375" height="225" src="//www.youtube.com/embed/7_QnndnFo7w" frameborder="0" allowfullscreen></iframe>
+              <!--<iframe width="375" height="225" src="//www.youtube.com/watch?v=aVKc54n_4aM" frameborder="0" allowfullscreen></iframe>-->
+              <iframe width="375" height="225" src="//www.youtube.com/embed/aVKc54n_4aM?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
           </div>
           <p align="justify">Nunca pares, nunca te conformes, hasta que lo bueno sea mejor y lo mejor excelente.</p>
 
@@ -255,170 +158,11 @@
         </div>
       </div>
 
-<!--Inicio Login-->
-<div class="row">
-   						 
-   							<!--<div class="modal hide" id="myModal">-->
-   			<div class="hide fade modal" id="myAcceder">
-          						<div class="modal-header">
-            						<button type="button" class="close" data-dismiss="modal">x</button>
-            							<h3>Acceda a SWG</h3>
-          						</div>
-          			<div class="modal-body">
-            					<form method="post" action='' name="login_form">
-              							<p><input type="text" class="span3" name="eid" id="email" placeholder="Usuario/Correo Electrónico"></p>
-              							<p><input type="password" class="span3" name="passwd" placeholder="Contraseña"></p>
-              							<p><button type="submit" class="btn btn-primary">Accesar</button>
-                								<a href="#">¿Olvidaste tu contraseña?</a>
-              							</p>
-            					</form>
-          			</div>
+</div> <!-- /container -->
 
-          					<div class="modal-footer">
-          						¿Nuevo en SWG?
-            					<!--<a href="#myRegistrarse" class="btn btn-primary">Registrarse</a>-->
-                      <!--<div class="close" data-dismiss="modal"></div>-->
-                      <a class="btn btn-primary" data-toggle="modal" href="#myRegistrarse" div class="close" data-dismiss="modal">Únetenos!</a>
-                    </div>
-        					
-        </div>
-
-</div>
-<!--Fin login-->
-
-<!--Inicio Registrarse-->
-	<div class="row">
-   			<!--<div class="modal hide" id="myModal">-->
-   			<div class="hide fade modal" id="myRegistrarse">
-          		<div class="modal-header">
-            		<button type="button" class="close" data-dismiss="modal">x</button>
-            			<h3>Registrarse a SWG</h3>
-          		</div>
-        <div class="modal-body">
-            	<form method="post" action='index.php' name="login_form">		
-
-              <!--Inicia cuadros de texto-->
-
-              
-              <div class="control-group <?php echo !empty($nombreError)?'error':'';?>">
-              <label class="control-label">Nombre</label>
-              <div class="controls">
-              
-                  <input name="nombre" type="text"  placeholder="Nombre" value="<?php echo !empty($nombre)?$nombre:'';?>">
-                  <?php if (!empty($nombreError)): ?>
-                    <span class="help-inline"><?php echo $nombreError;?></span>
-                  <?php endif; ?>
-              </div>
-            </div>
-
-            <div class="control-group <?php echo !empty($apellidoError)?'error':'';?>">
-              <label class="control-label">Apellido</label>
-              <div class="controls">
-              
-                  <input name="apellido" type="text"  placeholder="Apellido" value="<?php echo !empty($apellido)?$apellido:'';?>">
-                  <?php if (!empty($apellidoError)): ?>
-                    <span class="help-inline"><?php echo $apellidoError;?></span>
-                  <?php endif; ?>
-              </div>
-            </div>
-
-            <div class="control-group <?php echo !empty($telefonoError)?'error':'';?>">
-              <label class="control-label">Teléfono Celular</label>
-              <div class="controls">
-                  <input name="telefono" type="text"  placeholder="Teléfono Celular (Máximo 10 dígitos)" value="<?php echo !empty($telefono)?$telefono:'';?>">
-                  <?php if (!empty($telefonoError)): ?>
-                    <span class="help-inline"><?php echo $telefonoError;?></span>
-                  <?php endif;?>
-              </div>
-            </div>
-
-            <div class="control-group <?php echo !empty($emailError)?'error':'';?>">
-              <label class="control-label">Correo Electrónico</label>
-              <div class="controls">
-                  <input name="email" type="text" placeholder="Correo Electrónico" value="<?php echo !empty($email)?$email:'';?>">
-                  <?php if (!empty($emailError)): ?>
-                    <span class="help-inline"><?php echo $emailError;?></span>
-                  <?php endif;?>
-              </div>
-            </div>
-
-            <div class="control-group <?php echo !empty($tituloError)?'error':'';?>">
-              <label class="control-label">Titulo</label>
-              <div class="controls">
-              
-                  <input name="titulo" type="text"  placeholder="Titulo" value="<?php echo !empty($titulo)?$titulo:'';?>">
-                  <?php if (!empty($tituloError)): ?>
-                    <span class="help-inline"><?php echo $tituloError;?></span>
-                  <?php endif; ?>
-              </div>
-            </div>
-
-            <div class="control-group <?php echo !empty($userError)?'error':'';?>">
-              <label class="control-label">Usuario</label>
-              <div class="controls">
-              
-                  <input name="user" type="text"  placeholder="Usuario" value="<?php echo !empty($user)?$user:'';?>">
-                  <?php if (!empty($userError)): ?>
-                    <span class="help-inline"><?php echo $userError;?></span>
-                  <?php endif; ?>
-              </div>
-            </div>
-
-            <div class="control-group <?php echo !empty($passError)?'error':'';?>">
-              <label class="control-label">Contraseña</label>
-              <div class="controls">
-              
-                  <input name="pass" type="text"  placeholder="Contraseña" value="<?php echo !empty($pass)?$pass:'';?>">
-                  <?php if (!empty($passError)): ?>
-                    <span class="help-inline"><?php echo $passError;?></span>
-                  <?php endif; ?>
-              </div>
-            </div>
-
-            <div class="control-group <?php echo !empty($statusError)?'error':'';?>">
-              <label class="control-label">Estatus</label>
-              <div class="controls">
-              
-                  <input name="status" type="text"  placeholder="Estatus" value="<?php echo !empty($status)?$status:'';?>">
-                  <?php if (!empty($statusError)): ?>
-                    <span class="help-inline"><?php echo $statusError;?></span>
-                  <?php endif; ?>
-              </div>
-            </div>
-
-            
-
-            <!--Termina cuadros de texto-->
-
-                <!--<p><input type="text" class="span3" name="nid" id="nombre" placeholder="Nombre"></p>
-                <p><input type="text" class="span3" name="aid" id="apellido" placeholder="Apellido"></p>
-                <p><input type="tel" maxlenght="10" class="span3" name="cid" id="celular" placeholder="Teléfono Celular"></p>
-                <p><input type="email" class="span3" name="eid" id="email" placeholder="Correo Electrónico"></p>
-                <p><input type="text" class="span3" name="tid" id="titulo" placeholder="Titulo"></p>
-                <p><input type="text" class="span3" name="uid" id="usuario" placeholder="Usuario"></p>
-            		<p><input type="password" class="span3" name="passwd" placeholder="Contraseña"></p>
-                <p><input type="text" class="span3" name="eid" id="estatus" placeholder="Estatus"></p>-->
-              	
-              		<p><button type="submit" class="btn btn-primary">Registrarse</button></p>
-            	</form>
-        </div>
-          		<div class="modal-footer">
-          		Gracias por Registrarte!
-        		</div>
-        	</div>
-  </div>
-
-    <hr>
-<!--Fin registrarse-->
+  <hr>
 
 <!--footer-->
-
-<!--<footer class="color4">
-    <div class="container"><br>
-        <p>Derechos reservados @2014 SWG</p>
-        </br></div>
-</footer>-->
-
 <div class="nav navbar-default navbar-fixed-button">
     <div class="container">
       <p class="nav navbar-text pull-left">Sitio creado por @anghellp<br>&copy; SWG 2014</p>
@@ -426,14 +170,7 @@
       <a href="#top" class="nav navbar-text pull-right"><strong>Regresar arriba</strong></a>
     </div> 
 </div>
-
-<!--footer fin-->
-
-      <!--<footer>
-        <p>&copy; SWG 2014</p>
-      </footer>-->
-
-    </div> <!-- /container -->
+<!--</footer>-->
 
     <!-- Le javascript
     ================================================== -->
