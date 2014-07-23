@@ -81,10 +81,10 @@
 		    		
 	    			<form class="form-horizontal" action="eliminarcliente.php" method="post">
 	    			  <input type="hidden" name="idcliente" value="<?php echo $idcliente;?>"/>
-					  <p class="alert alert-error">¿Está seguro de que desea eliminar permanentemente el elemento especificado de la base de datos?</p>
+					  <p class="alert alert-error">¿Est&aacute; seguro de que desea eliminar permanentemente el elemento especificado de la base de datos?</p>
 					  <div class="form-actions">
 						  <button type="submit" class="btn btn-danger">Si</button>
-						  <a class="btn" href="index.php">No</a>
+						  <a class="btn" href="listarclientes.php">No</a>
 						</div>
 					</form>
 				</div>

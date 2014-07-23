@@ -93,9 +93,21 @@
       //$q->execute(array($nombre,$apellido,$telefono,$email,$titulo,$user,md5($pass),$status));
       $q->execute(array($nombre,$apellido,$telefono,$email,$titulo,$user,$pass,$status));
       Database::disconnect();
-      header("Location: index2.html");
-    }
-  }
+      //header("Location: index2.php");
+      include ('funciones.php');
+          //usuario y clave pasados por el formulario
+          $user = $_POST['user'];
+          $pass = $_POST['pass'];
+            //usa la funcion conexiones() que se ubica dentro de funciones.php
+        if (conexiones($user, $pass)){
+                //si es valido accedemos a ingreso.php
+              header('Location:ingreso.php');
+            } else {
+            //si no es valido volvemos al formulario inicial
+              header('Location: accedersesion.php');
+            }
+          }
+        }
 ?>
 
 <!DOCTYPE html>
@@ -142,7 +154,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav" >
               <li><a href="index.php">Inicio</a></li>
-              <li class="active"><a href="altacliente.php>">Registro Cliente</a></li>
+              <li class="active"><a href="altacliente.php">Registro Cliente</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -158,7 +170,11 @@
               <br>
             </div>
         
-            <form class="form-horizontal" action="altacliente.php" method="post">
+            <form class="form-horizontal" action="altacliente.php" method="post" name="alta">
+
+            <!--Cursor en formulario-->
+        <body onload = "document.alta.nombre.focus()">
+        <!--Fin cursor formulario-->
             
             <div class="control-group <?php echo !empty($nombreError)?'error':'';?>">
               <label class="control-label">Nombre</label>
@@ -183,7 +199,7 @@
             </div>
 
             <div class="control-group <?php echo !empty($telefonoError)?'error':'';?>">
-              <label class="control-label">Teléfono Celular</label>
+              <label class="control-label">Tel&eacute;fono Celular</label>
               <div class="controls">
                   <input name="telefono" class="span3" type="text" maxlength="10" placeholder="Teléfono Celular (10 dígitos)" value="<?php echo !empty($telefono)?$telefono:'';?>">
                   <?php if (!empty($telefonoError)): ?>
@@ -193,7 +209,7 @@
             </div>
 
             <div class="control-group <?php echo !empty($emailError)?'error':'';?>">
-              <label class="control-label">Correo Electrónico</label>
+              <label class="control-label">Correo Electr&oacute;nico</label>
               <div class="controls">
                   <input name="email" class="span3" type="text" placeholder="Correo Electrónico" value="<?php echo !empty($email)?$email:'';?>">
                   <?php if (!empty($emailError)): ?>
@@ -225,7 +241,7 @@
             </div>
 
             <div class="control-group <?php echo !empty($passError)?'error':'';?>">
-              <label class="control-label">Contraseña</label>
+              <label class="control-label">Contrase&ntilde;a</label>
               <div class="controls">
               
                   <input name="pass" class="span3" type="password" maxlength="8" placeholder="Contraseña (Max. 8)" value="<?php echo !empty($pass)?$pass:'';?>">

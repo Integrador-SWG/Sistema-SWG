@@ -95,7 +95,7 @@
 					  </div>
 
 					  <div class="control-group">
-					    <label class="control-label">Teléfono Celular:</label>
+					    <label class="control-label">Tel&eacute;fono Celular:</label>
 					    <div class="controls">
 						    <label class="checkbox">
 						     	<?php echo $data['telefono'];?>
@@ -104,7 +104,7 @@
 					  </div>
 
 					  <div class="control-group">
-					    <label class="control-label">Correo Electrónico:</label>
+					    <label class="control-label">Correo Electr&oacute;nico:</label>
 					    <div class="controls">
 					      	<label class="checkbox">
 						     	<?php echo $data['email'];?>
@@ -130,7 +130,7 @@
 					  </div>
 
 					  <div class="control-group">
-					    <label class="control-label">Contraseña:</label>
+					    <label class="control-label">Contrase&nacute;a:</label>
 					    <div class="controls">
 						    <label class="checkbox">
 						     	<?php echo $data['pass'];?>
@@ -149,7 +149,7 @@
 
 					  </div>
 					    <div class="form-actions">
-						  <a class="btn" href="listarclientes.php">Atrás</a>
+						  <a class="btn" href="listarclientes.php">Atr&aacute;s</a>
 					   </div>
 					</div>
 				</div>

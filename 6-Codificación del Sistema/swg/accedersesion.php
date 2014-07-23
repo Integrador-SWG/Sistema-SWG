@@ -76,6 +76,7 @@
   </head>
 
   <body>
+  <!--<body id="acceder">-->
     <!--Menu-->
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
@@ -100,9 +101,12 @@
     <div class="container">
 
       <!--<form class="form-signin">-->
-      <form class="form-signin" action='index2.php' method="post">
+      <form class="form-signin" action='index2.php' method="post" name="acceder">
         <h2 class="form-signin-heading">Identificarse</h2>
-        
+
+        <!--Cursor en formulario-->
+        <body onload = "document.acceder.user.focus()">
+        <!--Fin cursor formulario-->
 
         <!--<input type="text" class="input-block-level" placeholder="Usuario">-->
         <div class="control-group <?php echo !empty($userError)?'error':'';?>">
@@ -117,7 +121,7 @@
 
         <!--<input type="password" class="input-block-level" placeholder="Contraseña">-->
         <div class="control-group <?php echo !empty($passError)?'error':'';?>">
-              <label class="control-label">Contraseña</label>
+              <label class="control-label">Contrase&ntilde;a</label>
               <div class="controls">
               
                   <input name="pass" class="span3" type="password" maxlength="8" placeholder="Contraseña (Max. 8)" value="<?php echo !empty($pass)?$pass:'';?>">
@@ -128,7 +132,7 @@
         </div>
 
         <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Recordarme
+          <input type="checkbox" value="remember-me"> Empleado
         </label>
         <button class="btn btn-large btn-primary" type="submit">Acceder</button>
         <!--<a class="btn btn-large"href="<?=$_SERVER["HTTP_REFERER"]?>">Atras</a>-->

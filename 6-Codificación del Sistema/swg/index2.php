@@ -6,7 +6,7 @@ $pass = $_POST['pass'];
 //usa la funcion conexiones() que se ubica dentro de funciones.php
 if (conexiones($user, $pass)){
 	//si es valido accedemos a ingreso.php
-	header('Location:ingreso.php');
+	header('Location:index.php');
 } else {
 	//si no es valido volvemos al formulario inicial
 	header('Location: accedersesion.php');

@@ -178,7 +178,11 @@
 		    			<h3>Actualizar cliente</h3>
 		    		</div>
     		
-	    <form class="form-horizontal" action="actualizarcliente.php?idcliente=<?php echo $idcliente?>" method="post">
+	    <form class="form-horizontal" action="actualizarcliente.php?idcliente=<?php echo $idcliente?>" method="post" name="actualizar">
+
+      <!--Cursor en formulario-->
+        <body onload = "document.actualizar.nombre.focus()">
+        <!--Fin cursor formulario-->
 
             <div class="control-group <?php echo !empty($nombreError)?'error':'';?>">
               <label class="control-label">Nombre</label>
@@ -203,7 +207,7 @@
             </div>
 
             <div class="control-group <?php echo !empty($telefonoError)?'error':'';?>">
-              <label class="control-label">Teléfono Celular</label>
+              <label class="control-label">Tel&eacute;fono Celular</label>
               <div class="controls">
                   <input name="telefono" class="span3" type="text" maxlength="10" placeholder="Teléfono Celular (10 dígitos)" value="<?php echo !empty($telefono)?$telefono:'';?>">
                   <?php if (!empty($telefonoError)): ?>
@@ -213,7 +217,7 @@
             </div>
 
             <div class="control-group <?php echo !empty($emailError)?'error':'';?>">
-              <label class="control-label">Correo Electrónico</label>
+              <label class="control-label">Correo Electr&oacute;nico</label>
               <div class="controls">
                   <input name="email" class="span3" type="text" placeholder="Correo Electrónico" value="<?php echo !empty($email)?$email:'';?>">
                   <?php if (!empty($emailError)): ?>
@@ -245,7 +249,7 @@
             </div>
 
             <div class="control-group <?php echo !empty($passError)?'error':'';?>">
-              <label class="control-label">Contraseña</label>
+              <label class="control-label">Contrase&ntilde;a</label>
               <div class="controls">
               
                   <input name="pass" class="span3" type="password" maxlength="8" placeholder="Contraseña (Max. 8)" value="<?php echo !empty($pass)?$pass:'';?>">
@@ -256,7 +260,7 @@
             </div>
 
             <div class="control-group <?php echo !empty($pass2Error)?'error':'';?>">
-              <label class="control-label">Contraseña</label>
+              <label class="control-label">Contrase&ntilde;a</label>
               <div class="controls">
               
                   <input name="pass2" class="span3" type="password" maxlength="8" placeholder="Contraseña (Max. 8)" value="<?php echo !empty($pass2)?$pass2:'';?>">
@@ -280,7 +284,7 @@
             <div class="form-actions">
               <button type="submit" class="btn btn-success">Actualizar</button>
               <!--<a class="btn"href="<?=$_SERVER["HTTP_REFERER"]?>">Atras</a>-->
-              <a class="btn" href="index.php">Regresar</a>
+              <a class="btn" href="listarclientes.php">Regresar</a>
             </div>
 					  
 		</form>

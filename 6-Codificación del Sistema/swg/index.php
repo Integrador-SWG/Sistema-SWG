@@ -1,3 +1,9 @@
+<?php
+include ('funciones.php');
+session_start('user');
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -28,6 +34,8 @@
 
   <body>
 
+
+
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -36,34 +44,55 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-  
-          <a class="brand" href="index.php"><img src='ico/favicon1.png' title='SWG' border='0'></a>
+
+          <!--If-->
+          <?php error_reporting(0); if ($_SESSION['user'] == false): ?>
+                   <!--<a class="brand" href="index.php"><img src='ico/favicon1.png' title='SWG' border='0'></a>-->
+          <a class="brand" href="index.php">SWG</a>
           <div class="nav-collapse collapse">
             <ul class="nav" >
               <li class="active"><a href="index.php">Inicio</a></li>
-              <li><a href="quienessomos.html">¿Quiénes Somos?</a></li>
-              <li><a href="contacto.html">Contacto</a></li>
-              <li><a href="productos.html">Productos</a></li>
-              <li><a href="layout.html">Layout</a></li>
+              <li><a href="servicios.php">Servicios</a></li>
+              <li><a href="conocenos.php">Conocenos</a></li>
+              <li><a href="galeria.php">Galeria</a></li>
+              <li><a href="productos.php">Productos</a></li>
+              <li><a href="contacto.php">Contacto</a></li>
               <li><a href="listarclientes.php">Listar Clientes</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Despegable <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Acción</a></li>
-                  <li><a href="#">Otra acción</a></li>
-                  <li><a href="#">Algo más aquí</a></li>
-                  <li class="divider"></li>
-                  <li class="nav-header">Cabecera</li>
-                  <li><a href="#">Enlace separado</a></li>
-                  <li><a href="#">Otro enlace separado</a></li>
-                </ul>
-              </li>
             </ul>
             <form class="navbar-form pull-right">
               <a href="accedersesion.php" class="btn">Acceder</a>
               <a href="altacliente.php" class="btn btn-primary">Registrarse</a>
             </form>
           </div><!--/.nav-collapse -->
+          
+          <!--Fin If-->
+          
+          <!--else-->
+          <?php else : ?>
+           <a class="brand" href="index.php">SWG</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav" >
+              <li class="active"><a href="index.php">Inicio</a></li>
+              <li><a href="servicios.php">Servicios</a></li>
+              <li><a href="conocenos.php">Conocenos</a></li>
+              <li><a href="galeria.php">Galeria</a></li>
+              <li><a href="productos.php">Productos</a></li>
+              <li><a href="contacto.php">Contacto</a></li>
+              <li><a href="listarclientes.php">Listar Clientes</a></li>
+            </ul>
+            <form class="navbar-form pull-right">
+              <div class="btn-group">
+                <a class="btn btn-primary"><i class="icon-user icon-white"></i> <?=$_SESSION['user'];?></a>
+                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href='salir.php'><i class="icon-off"></i> Cerrar Sesi&oacute;n</a></li>
+                  </ul>
+              </div>
+            </form>
+          </div><!--/.nav-collapse -->
+          <?php endif ?>        
+          <!--Fin else-->
+
         </div>
       </div>
     </div>
@@ -92,7 +121,7 @@
                         <!--<a class="brand" href="index.html"><img src='img/fitnessgym.png' width='1200' height='480' title='SWG' border='0'></a>-->
                         <img src="img/slide0.png" alt="orange" class="img-responsive">
                         <div class="carousel-caption">
-                          <p class="lead">Si ella puede hacerlo, ¿Cuál es tu excusa?</p>
+                          <p class="lead">Si ella puede hacerlo, ¿Cu&aacute;l es tu excusa?</p>
                       </div>
                 </div>
  

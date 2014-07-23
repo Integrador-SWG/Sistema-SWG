@@ -1,14 +1,17 @@
 <?php
 include ('funciones.php');
+
+session_start('user');
+
 //uso de la funcion verificar_usuario()
-if (verificar_usuario()){
+/*if (verificar_usuario()){
 	//si el usuario es verificado puede acceder al contenido permitido a el
 	//print "Hola $_SESSION[user]<br/>Ingresa a otra parte del sistema si deseas <a href='sistema.php'>clic aqui</a><br/>";
 	//print "Desconectarse <a href='salir.php'/>aqui</a>";
 } else {
 	//si el usuario no es verificado volvera al formulario de ingreso
 	header('Location:accedersesion.php');
-}
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -50,41 +53,27 @@ if (verificar_usuario()){
             <span class="icon-bar"></span>
           </button>
   
-          <a class="brand" href="index.php"><img src='ico/favicon1.png' title='SWG' border='0'></a>
+          <!--<a class="brand" href="index.php"><img src='ico/favicon1.png' title='SWG' border='0'></a>-->
+          <a class="brand" href="index.php">SWG</a>
           <div class="nav-collapse collapse">
             <ul class="nav" >
               <li class="active"><a href="index.php">Inicio</a></li>
-              <li><a href="quienessomos.html">¿Quiénes Somos?</a></li>
-              <li><a href="contacto.html">Contacto</a></li>
+              <li><a href="layout.html">Servicios</a></li>
+              <li><a href="conocenos.html">Conocenos</a></li>
+              <li><a href="galeria.html">Galeria</a></li>
               <li><a href="productos.html">Productos</a></li>
-              <li><a href="layout.html">Layout</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
               <li><a href="listarclientes.php">Listar Clientes</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Despegable <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Acción</a></li>
-                  <li><a href="#">Otra acción</a></li>
-                  <li><a href="#">Algo más aquí</a></li>
-                  <li class="divider"></li>
-                  <li class="nav-header">Cabecera</li>
-                  <li><a href="#">Enlace separado</a></li>
-                  <li><a href="#">Otro enlace separado</a></li>
-                </ul>
-              </li>
             </ul>
-
             <form class="navbar-form pull-right">
-
               <div class="btn-group">
-                <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> <?=$_SESSION['user'];?></a>
+                <a class="btn btn-primary"><i class="icon-user icon-white"></i> <?=$_SESSION['user'];?></a>
                 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                          <li><a href='salir.php'><i class="icon-off"></i> Cerrar Sesión</a></li>
+                          <li><a href='salir.php'><i class="icon-off"></i> Cerrar Sesi&oacute;n</a></li>
                       </ul>
-            </div>
-
+              </div>
             </form>
-
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -114,7 +103,7 @@ if (verificar_usuario()){
                         <!--<a class="brand" href="index.html"><img src='img/fitnessgym.png' width='1200' height='480' title='SWG' border='0'></a>-->
                         <img src="img/slide0.png" alt="orange" class="img-responsive">
                         <div class="carousel-caption">
-                          <p class="lead">Si ella puede hacerlo, ¿Cuál es tu excusa?</p>
+                          <p class="lead">Si ella puede hacerlo, ¿Cu&aacute;l es tu excusa?</p>
                       </div>
                 </div>
  
@@ -153,7 +142,7 @@ if (verificar_usuario()){
 
       <div class="row">
         <div class="span4">
-          <h2>Vídeo del día</h2>
+          <h2>Vídeo del d&iacute;a</h2>
 
           <div class="js-video [vimeo, widescreen]">
               <!--<iframe width="375" height="225" src="//www.youtube.com/watch?v=aVKc54n_4aM" frameborder="0" allowfullscreen></iframe>-->

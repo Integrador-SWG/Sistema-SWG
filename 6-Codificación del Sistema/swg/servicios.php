@@ -1,8 +1,14 @@
+<?php
+include ('funciones.php');
+session_start('user');
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>Layout para practicar</title>
+    <title>Servicios</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -41,32 +47,54 @@
             <span class="icon-bar"></span>
           </button>
   
-          <a class="brand" href="index.php"><img src='ico/favicon2.png' title='SWG' border='0'></a>
+          <!--If-->
+          <?php error_reporting(0); if ($_SESSION['user'] == false): ?>
+                   <!--<a class="brand" href="index.php"><img src='ico/favicon1.png' title='SWG' border='0'></a>-->
+          <a class="brand" href="index.php">SWG</a>
           <div class="nav-collapse collapse">
             <ul class="nav" >
               <li><a href="index.php">Inicio</a></li>
-              <li><a href="quienessomos.html">¿Quiénes Somos?</a></li>
-              <li><a href="contacto.html">Contacto</a></li>
-              <li><a href="productos.html">Productos</a></li>
-              <li class="active"><a href="layout.html">Layout</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Despegable <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Acción</a></li>
-                  <li><a href="#">Otra acción</a></li>
-                  <li><a href="#">Algo más aquí</a></li>
-                  <li class="divider"></li>
-                  <li class="nav-header">Cabecera</li>
-                  <li><a href="#">Enlace separado</a></li>
-                  <li><a href="#">Otro enlace separado</a></li>
-                </ul>
-              </li>
+              <li class="active"><a href="servicios.php">Servicios</a></li>
+              <li><a href="conocenos.php">Conocenos</a></li>
+              <li><a href="galeria.php">Galeria</a></li>
+              <li><a href="productos.php">Productos</a></li>
+              <li><a href="contacto.php">Contacto</a></li>
+              <li><a href="listarclientes.php">Listar Clientes</a></li>
             </ul>
             <form class="navbar-form pull-right">
               <a href="accedersesion.php" class="btn">Acceder</a>
               <a href="altacliente.php" class="btn btn-primary">Registrarse</a>
             </form>
           </div><!--/.nav-collapse -->
+          
+          <!--Fin If-->
+          
+          <!--else-->
+          <?php else : ?>
+           <a class="brand" href="index.php">SWG</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav" >
+              <li><a href="index.php">Inicio</a></li>
+              <li class="active"><a href="servicios.php">Servicios</a></li>
+              <li><a href="conocenos.php">Conocenos</a></li>
+              <li><a href="galeria.php">Galeria</a></li>
+              <li><a href="productos.php">Productos</a></li>
+              <li><a href="contacto.php">Contacto</a></li>
+              <li><a href="listarclientes.php">Listar Clientes</a></li>
+            </ul>
+            <form class="navbar-form pull-right">
+              <div class="btn-group">
+                <a class="btn btn-primary"><i class="icon-user icon-white"></i> <?=$_SESSION['user'];?></a>
+                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href='salir.php'><i class="icon-off"></i> Cerrar Sesi&oacute;n</a></li>
+                  </ul>
+              </div>
+            </form>
+          </div><!--/.nav-collapse -->
+          <?php endif ?>        
+          <!--Fin else-->
+
         </div>
       </div>
     </div>
@@ -75,7 +103,7 @@
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
-        <h1>Layout para practicar <small>!Cambialo sin miedo¡</small></h1>
+        <h1>Servicios <small>!Disfruta de nuestros servicios¡</small></h1>
         <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
         <p><a href="#" class="btn btn-primary btn-large">Aprender más &raquo;</a></p>
       </div>
@@ -136,57 +164,6 @@
 
       <hr>
       <!-- Final 3 row "fila" -->
-
-<!--Inicio Login-->
-<div class="row">
-        <div class="hide fade modal" id="myAcceder">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">x</button>
-                          <h3>Acceda a SWG</h3>
-                      </div>
-                <div class="modal-body">
-                      <form method="post" action='' name="login_form">
-                            <p><input type="text" class="span3" name="eid" id="email" placeholder="Usuario/Correo Electrónico"></p>
-                            <p><input type="password" class="span3" name="passwd" placeholder="Contraseña"></p>
-                            <p><button type="submit" class="btn btn-primary">Accesar</button>
-                                <a href="#">¿Olvidaste tu contraseña?</a>
-                            </p>
-                      </form>
-                </div>
-
-                    <div class="modal-footer">
-                      ¿Nuevo en SWG?
-                      <!--<a href="#myRegistrarse" class="btn btn-primary">Registrarse</a>-->
-                      <!--<div class="close" data-dismiss="modal"></div>-->
-                      <a class="btn btn-primary" data-toggle="modal" href="#myRegistrarse" div class="close" data-dismiss="modal">Únetenos!</a>
-                    </div>
-        </div>
-
-</div>
-<!--Fin login-->
-
-<!--Inicio Registrarse-->
-  <div class="row">
-        <div class="hide fade modal" id="myRegistrarse">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">x</button>
-                  <h3>Registrarse a SWG</h3>
-              </div>
-         <div class="modal-body">
-              <form method="post" action='' name="login_form">    
-                <p><input type="text" class="span3" name="nid" id="nombre" placeholder="Nombre"></p>
-                <p><input type="password" class="span3" name="passwd" placeholder="Contraseña"></p>
-                  <p><input type="text" class="span3" name="eid" id="email" placeholder="Correo Electrónico"></p>
-                  <p><input type="text" class="span3" name="cid" id="celular" placeholder="Teléfono Celular"></p>
-                  <p><button type="submit" class="btn btn-primary">Registrarse</button></p>
-              </form>
-        </div>
-              <div class="modal-footer">
-              Gracias por Registrarte!
-            </div>
-          </div>
-    </div>
-<!--Fin registrarse-->
 
 <!--Footer>-->
 
