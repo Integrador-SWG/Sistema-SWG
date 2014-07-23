@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<!-- saved from url=(0222)http://localhost/phpmyadmin/db_datadict.php?db=swg&table=usuario&server=1&target=&token=e498eec4c6c8aecb6024a4c158cf7096#PMAURL-0:db_datadict.php?db=swg&table=usuario&server=1&target=&token=e498eec4c6c8aecb6024a4c158cf7096 -->
+<html lang="es" dir="ltr" class="chrome chrome36" style="display: block;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><style>html{display: none;}</style><link rel="icon" href="http://localhost/phpmyadmin/favicon.ico" type="image/x-icon"><link rel="shortcut icon" href="http://localhost/phpmyadmin/favicon.ico" type="image/x-icon"><link rel="stylesheet" type="text/css" href="./Diccionario de Datos_files/print.css"><title>Vista de impresión - phpMyAdmin 4.1.12</title><script type="text/javascript" src="./Diccionario de Datos_files/get_scripts.js.php"></script><script type="text/javascript" src="./Diccionario de Datos_files/messages.php"></script><style type="text/css"></style><script type="text/javascript" src="./Diccionario de Datos_files/get_image.js.php"></script><script type="text/javascript">// <![CDATA[
+PMA_commonParams.setAll({common_query:"token=e498eec4c6c8aecb6024a4c158cf7096",opendb_url:"db_structure.php",safari_browser:"0",querywindow_height:"400",querywindow_width:"600",collation_connection:"utf8mb4_general_ci",lang:"es",server:"1",table:"usuario",db:"swg",token:"e498eec4c6c8aecb6024a4c158cf7096",text_dir:"ltr",pma_absolute_uri:"http://localhost/phpmyadmin/",pma_text_default_tab:"Examinar",pma_text_left_default_tab:"Estructura",confirm:"1"});
+AJAX.scriptHandler.add("jquery/jquery-1.8.3.min.js",0).add("ajax.js",0).add("keyhandler.js",1).add("jquery/jquery-ui-1.9.2.custom.min.js",0).add("jquery/jquery.sprintf.js",0).add("jquery/jquery.cookie.js",0).add("jquery/jquery.mousewheel.js",0).add("jquery/jquery.event.drag-2.2.js",0).add("jquery/jquery-ui-timepicker-addon.js",0).add("jquery/jquery.ba-hashchange-1.3.js",0).add("jquery/jquery.debounce-1.0.5.js",0).add("jquery/jquery.menuResizer-1.0.js",0).add("cross_framing_protection.js",0).add("rte.js",1).add("tracekit/tracekit.js",1).add("error_report.js",1).add("messages.php?lang=es&amp;db=swg&amp;token=e498eec4c6c8aecb6024a4c158cf7096",0).add("get_image.js.php?theme=pmahomme",0).add("doclinks.js",1).add("functions.js",1).add("navigation.js",0).add("indexes.js",1).add("common.js",1).add("codemirror/lib/codemirror.js",0).add("codemirror/mode/sql/sql.js",0).add("codemirror/addon/runmode/runmode.js",0);
+$(function() {AJAX.fireOnload("keyhandler.js");AJAX.fireOnload("rte.js");AJAX.fireOnload("tracekit/tracekit.js");AJAX.fireOnload("error_report.js");AJAX.fireOnload("doclinks.js");AJAX.fireOnload("functions.js");AJAX.fireOnload("indexes.js");AJAX.fireOnload("common.js");});
+// ]]></script></head><body><noscript>&lt;div class="error"&gt;&lt;img src="themes/dot.gif" title="" alt="" class="icon ic_s_error" /&gt; Pasado este punto, debe tener Javascript activado&lt;/div&gt;</noscript><div id="page_content"><div>
+<h2>altaproductos</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Enlaces a</th>
+    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">idaltaproductos</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número identificador unico e irrepetible que se le asignará a cada alta de producto que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">fecha</td><td class="nowrap" lang="en" dir="ltr">datetime</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Fecha en la que se efectuo el registro dentro de la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">estatus</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Estado visible de las altas realizadas</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">idempleados</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>empleados -&gt; idempleados</td>
+    <td>Personal de la empresa responsable del registro efectuado en la base de datops del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">idproductos</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>productos -&gt; idproductos</td>
+    <td>Nombre del producto registrado en la base de datos.</td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>idaltaproductos</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick even"><td rowspan="1">fk_altapro_empleados</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idempleados</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick odd"><td rowspan="1">fk_altapro_productos</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idproductos</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><div>
+<h2>cliente</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Enlaces a</th>
+    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">idcliente</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número identificador único e irrepetible que se le asignará a cada cliente que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">nombre</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Nombre del cliente objeto de registro en la base de datos del sistema.
+</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">apellido</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Apellidos del cliente objeto de registro en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">telefono</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número telefonico de contacto del cliente registrado en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">correo</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Correo electrónico para notificaciones y contacto de cada cliente que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">estatus</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Situación o estad oque guardara cada cliente dentro de la base de datos del sisitema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">idusuario</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>usuario -&gt; idusuario</td>
+    <td></td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>idcliente</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick even"><td rowspan="1">fk_cliente_usuario</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idusuario</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><div>
+<h2>compra</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Enlaces a</th>
+    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">idcompra</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número identificador único e irrepetible que se le asignará a cada registro de compra ingresado en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">fecha</td><td class="nowrap" lang="en" dir="ltr">datetime</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Fecha y hora en la que se realizo dicho registro en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">cantidad</td><td class="nowrap" lang="en" dir="ltr">double</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Importe de la compra registrada.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">iva</td><td class="nowrap" lang="en" dir="ltr">double</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Impuesto al valor agregado de la compra registrada.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">total</td><td class="nowrap" lang="en" dir="ltr">double</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Importe neto de la compra registrada despues de impuestos y descuentos.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">estatus</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Estado en el que se encuentra la compra registrada.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">idcliente</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>cliente -&gt; idcliente</td>
+    <td>Nombre del cliente que realizo la compra.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">idproductos</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>productos -&gt; idproductos</td>
+    <td>Nombre del o los productos objeto de la compra.</td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>idcompra</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick even"><td rowspan="1">fk_compra_cliente</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idcliente</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick odd"><td rowspan="1">fk_compra_productos</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idproductos</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><div>
+<h2>confvista</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">idconfvista</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>Número identificador unico e irrepetible que se le asignará a cada configuración de la vista de cada empresa que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">nombre</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td>Diseño(s) con el nombre comercial de cada empresa registrada en la base de datos del sistema (SWG) para su personalización.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">slide1</td><td class="nowrap" lang="en" dir="ltr">varchar(200)</td><td>Sí</td><td class="nowrap"><i>NULL</i></td>    <td>Campo para almacenar la url de la imagenes del Slide 1</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">info1</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Sí</td><td class="nowrap"><i>NULL</i></td>    <td>Proporciona informacion rapida acerca de la imagen del slide1</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">slide2</td><td class="nowrap" lang="en" dir="ltr">varchar(200)</td><td>Sí</td><td class="nowrap"><i>NULL</i></td>    <td>Campo para almacenar la url de la imagenes del Slide 2</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">info2</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Sí</td><td class="nowrap"><i>NULL</i></td>    <td>Proporciona informacion rapida acerca de la imagen del slide2</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">slide3</td><td class="nowrap" lang="en" dir="ltr">varchar(200)</td><td>Sí</td><td class="nowrap"><i>NULL</i></td>    <td>Campo para almacenar la url de la imagenes del Slide 3</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">info3</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Sí</td><td class="nowrap"><i>NULL</i></td>    <td>Proporciona informacion rapida acerca de la imagen del slide 3</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">estatus</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td>Estado de cada diseño registrado en la base de datos del sistema para cada una de las empresas registradas en la base de datos puede ser activo o inactivo.
+
+</td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>idconfvista</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><div>
+<h2>confvistapro</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Enlaces a</th>
+    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">idconfvistapro</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número identificador unico e irrepetible que se le asignará a cada configuración de la vista o imagen de un producto que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">rutaimagen</td><td class="nowrap" lang="en" dir="ltr">varchar(200)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Ruta especificada dentro del servidor donde se encuentra alojada la imagen del producto a configurar en el sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">estatus</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Estad oque guarda la imagen del producto registrada en la base de datos del sisitema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">idproductos</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>productos -&gt; idproductos</td>
+    <td>Nombre del producto al que hace referencia la imagen registrada en la base de datos del sisitema.</td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>idconfvistapro</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick even"><td rowspan="1">fk_confvista_productos</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idproductos</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><div>
+<h2>cuentas</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Enlaces a</th>
+    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">idcuentas</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número identificador unico e irrepetible que se le asignará a cada registro de las cuentas de cada empresa que se ingrese en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">banco</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Nombre de la institución bancaria donde aperturto la cuenta la empresa registrada en la base de datos.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">nombre</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Nombre con el que se encuentra registrada en la institución bancaria la cuenta registrada en la base de datos.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">cuenta</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número de cuenta proporcionado por la institución financiera.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">estatus</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Situación de la cuenta registrada dentro de la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">idempresa</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>empresa -&gt; idempresa</td>
+    <td>Nombre de la empresa a la que pertenece el registro de la cuenta en la base de datos del sistema.</td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>idcuentas</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick even"><td rowspan="1">fk_cuentas_empresa</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idempresa</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><div>
+<h2>datosfacturacion</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Enlaces a</th>
+    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">iddatosfacturacion</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número identificador unico e irrepetible que se le asignará a cada registro de datos fiscales de cada empresa que se ingrese en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">razon</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Nombre o razón social con la que se encuentras registrada ante la Secretaria de Hacienda y Credito Publico cada empresa que se registre en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">rfc</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Registro Federal de Contribullentes asignado por la SHCP a cada empresa que se registre en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">direccion</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Domicilio fiscal registrado ante la SHCP de cada empresa que se agrege a la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">cp</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Codigo Postal de la ubicación de la empresa registrada en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">municipio</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Municipo al que pertenece el domicilo fiscal registrado de cada emprtesa en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">estado</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Estado al que pertenece el domicilo fiscal registrado de cada emprtesa en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">estatus</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Estado que guarda el registro de cada empresa dentro de la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">idempresa</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>empresa -&gt; idempresa</td>
+    <td>Nombre de la empresa a la que pertenece el domicilio fiscal registrado en la base de datos del sistema.</td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>iddatosfacturacion</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick even"><td rowspan="1">fk_datos_empresa</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idempresa</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><div>
+<h2>direccioncliente</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Enlaces a</th>
+    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">iddireccioncliente</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número identificador único e irrepetible que se le asignará a cada dirección que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">direccion</td><td class="nowrap" lang="en" dir="ltr">varchar(60)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Direccion general del domiciolio del cliente.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">cp</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Codigo Postal pertenceciente al domicilio del cliente que se registre en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">estado</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Estado pertenceciente al domicilio del cliente que se registre en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">referencia</td><td class="nowrap" lang="en" dir="ltr">text</td><td>Sí</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    <td>Rasgo identificador del domicilio del cliente a registrar en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">estatus</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Estado o situación que guarda el registro del domicilio existente en la base de datos del sisitema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">idcliente</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>cliente -&gt; idcliente</td>
+    <td>Nombre del cliente al que pertenece el domicilio registrado.</td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>iddireccioncliente</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick even"><td rowspan="1">fk_dircliente_cliente</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idcliente</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><div>
+<h2>empleados</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Enlaces a</th>
+    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">idempleados</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número identificador unico e irrepetible que se le asignará a cada empleado que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">nombre</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Nombre(s) del empleado que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">apellido</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Apellidos del empleado que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">telefono</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número telefonico personal del empleado que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">estatus</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Situación o estado en el que se podra encontrar el empleado para poder accesar al sistema SWG.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">idempresa</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>empresa -&gt; idempresa</td>
+    <td>Empresa a la que pertenece el empleado que se registra en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">idusuario</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>usuario -&gt; idusuario</td>
+    <td>identificador de usuario al que pertenece cada empleado</td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>idempleados</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick even"><td rowspan="1">fk_empleado_empresa</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idempresa</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick odd"><td rowspan="1">fk_empleado_usuario</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idusuario</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><div>
+<h2>empresa</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Enlaces a</th>
+    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">idempresa</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número identificador único e irrepetible que se le asignará a cada empresa que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">direccion</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Dirección fiscal y/o de ubicación de la empresa que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">correo</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Correo electrónico para notificaciones y contacto de cada empresa que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">idconfvista</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>confvista -&gt; idconfvista</td>
+    <td>Llave foránea que se relaciona con la tabla confvista de la base de datos, para mostrar la configuración personalizada de las vistas de cada empresa registrada en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>idempresa</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick even"><td rowspan="1">fk_empresa_confvista</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idconfvista</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><div>
+<h2>factcliente</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Enlaces a</th>
+    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">idfactcliente</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número identificador único e irrepetible que se le asignará a cada factura emitida y registrada en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">razon</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Nómbre fiscal que se le asignará a la factura registradaen la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">rfc</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Registro Federal de Contribullentes asignado por la SHCP a cada cliente que se registre en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">direccion</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Domicilio fiscal registrado ante la SHCP de cada cliente que se agrege a la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">municipio</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Municipo al que pertenece el domicilo fiscal registrado de cada cliente en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">estado</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Estado al que pertenece el domicilo fiscal registrado de cada cliente en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">status</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Estado que guarda el registro de cada factura de un cliente dentro de la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">idcliente</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>cliente -&gt; idcliente</td>
+    <td>Nombre no necesariamente fiscal de cada cliente al que le pertenece la factura registradaen la base de datos del sisitema.</td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>idfactcliente</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick even"><td rowspan="1">fk_facliente_cliente</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idcliente</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><div>
+<h2>nivel</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">idnivel</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>Número identificador unico e irrepetible que se le asignará a cada nivel de usuario que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">nombre</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td>Nombre breve que describa el nivel de acceso con el que se contara en la base de datos para ser asignado a los usuarios del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">estatus</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td>Situación que guardara el registro del nivel cread oen la base de datos.</td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>idnivel</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><div>
+<h2>productos</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Enlaces a</th>
+    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">idproductos</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número identificador único e irrepetible que se le asignará a cada producto que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">nombre</td><td class="nowrap" lang="en" dir="ltr">varchar(25)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Nombre del producto registrado en la base de datos del sisitema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">resumen</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Nombre corto o comercial con el que se identifica a cada producto registrado en la base de datos del sisitema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">descripcion</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Breve descripción de cada producto registrado en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">cantidad</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Número de piezas de cada producto registradas en la base de datos del sisitema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">precio</td><td class="nowrap" lang="en" dir="ltr">double</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Precio unitario de venta de cada producto registrado en la base de datos del sisitema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">estatus</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Estado o situación que guarda cada registro de producto en la base de datos del sistema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">idproveedor</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>proveedor -&gt; idproveedor</td>
+    <td>Nombre del proveedor que distribuye cada producto registrado en la base de datos del sisitema.</td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>idproductos</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick even"><td rowspan="1">fk_productos_proveedor</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idproveedor</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><div>
+<h2>proveedor</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">idproveedor</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>Número identificador unico e irrepetible que se le asignará a cada proveedor que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">nombre</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td>Nombre o razon social del proveedor que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">direccion</td><td class="nowrap" lang="en" dir="ltr">varchar(80)</td><td>No</td><td class="nowrap"></td>    <td>Dirección fiscal y/o de ubicación del proveedor que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">telefono</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td>Número telefonico de contacto del proveedor que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">telefono1</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>Sí</td><td class="nowrap"><i>NULL</i></td>    <td>Número telefonico opcional para contactar al proveedor que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">correo</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td>Correo electrónico para notificaciones y contacto de cada proveedor que se registre en la base de datos del sistema (SWG).</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">estatus</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td>Estado que guarda el registro de cada proveedor dentro de la base de datos del sistema.</td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>idproveedor</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><div>
+<h2>usuario</h2>
+<table width="100%" class="print"><tbody><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Predeterminado</th>    <th>Enlaces a</th>
+    <th>Comentarios</th>
+    <th>MIME</th>
+</tr><tr class="odd"><td class="nowrap">idusuario</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Numero identificador unico e irrepetible que se le asignara cada usuario</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">user</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Nombres de usuario para poder ingresar al sistema.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">pass</td><td class="nowrap" lang="en" dir="ltr">varchar(45)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Contraseña de autentificación para ingreso del sistema.</td>
+    <td></td>
+</tr><tr class="even"><td class="nowrap">estatus</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    <td>Estado los usuarios.</td>
+    <td></td>
+</tr><tr class="odd"><td class="nowrap">idnivel</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>idnivel -&gt; idnivel</td>
+    <td>Clave foranea del nivel que tiene cada usuario.</td>
+    <td></td>
+</tr></tbody></table><h3>Índices</h3><div class="no_indexes_defined hide"><div class="notice"><img src="./Diccionario de Datos_files/dot.gif" title="" alt="" class="icon ic_s_notice"> ¡No se ha definido ningún índice!</div></div><table id="table_index"><thead><tr><th>Nombre de la clave</th><th>Tipo</th><th>Único</th><th>Empaquetado</th><th>Columna</th><th>Cardinalidad</th><th>Cotejamiento</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody><tr class="noclick odd"><td rowspan="1">PRIMARY</td><td rowspan="1">BTREE</td><td rowspan="1">Sí</td><td rowspan="1">No</td><td>idusuario</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr><tr class="noclick even"><td rowspan="1">fk_usuario_nivel</td><td rowspan="1">BTREE</td><td rowspan="1">No</td><td rowspan="1">No</td><td>idnivel</td><td>0</td><td>A</td><td>No</td><td rowspan="1"></td></tr></tbody></table></div><p class="print_ignore"><input type="button" class="button" id="print" value="Imprimir"></p></div><div id="selflink" class="print_ignore"><a href="http://localhost/phpmyadmin/db_datadict.php?db=swg&table=usuario&server=1&target=&token=e498eec4c6c8aecb6024a4c158cf7096" title="Abrir nueva ventana de phpMyAdmin" target="_blank"><img src="./Diccionario de Datos_files/dot.gif" title="Abrir nueva ventana de phpMyAdmin" alt="Abrir nueva ventana de phpMyAdmin" class="icon ic_window-new"></a></div><script type="text/javascript">// <![CDATA[
+AJAX.cache.primer = { url: "db_datadict.php?db=swg&table=usuario&server=1&target=&token=e498eec4c6c8aecb6024a4c158cf7096", scripts: [{"name":"jquery\/jquery-1.8.3.min.js","fire":0},{"name":"ajax.js","fire":0},{"name":"keyhandler.js","fire":1},{"name":"jquery\/jquery-ui-1.9.2.custom.min.js","fire":0},{"name":"jquery\/jquery.sprintf.js","fire":0},{"name":"jquery\/jquery.cookie.js","fire":0},{"name":"jquery\/jquery.mousewheel.js","fire":0},{"name":"jquery\/jquery.event.drag-2.2.js","fire":0},{"name":"jquery\/jquery-ui-timepicker-addon.js","fire":0},{"name":"jquery\/jquery.ba-hashchange-1.3.js","fire":0},{"name":"jquery\/jquery.debounce-1.0.5.js","fire":0},{"name":"jquery\/jquery.menuResizer-1.0.js","fire":0},{"name":"cross_framing_protection.js","fire":0},{"name":"rte.js","fire":1},{"name":"tracekit\/tracekit.js","fire":1},{"name":"error_report.js","fire":1},{"name":"doclinks.js","fire":1},{"name":"functions.js","fire":1},{"name":"navigation.js","fire":0},{"name":"indexes.js","fire":1},{"name":"common.js","fire":1},{"name":"codemirror\/lib\/codemirror.js","fire":0},{"name":"codemirror\/mode\/sql\/sql.js","fire":0},{"name":"codemirror\/addon\/runmode\/runmode.js","fire":0}], menuHash: "607995bb"};
+AJAX.scriptHandler;
+$(function() {});
+// ]]></script></body></html>
