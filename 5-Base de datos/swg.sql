@@ -1,277 +1,346 @@
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+-- phpMyAdmin SQL Dump
+-- version 4.1.12
+-- http://www.phpmyadmin.net
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 25-07-2014 a las 10:41:04
+-- Versión del servidor: 5.6.16
+-- Versión de PHP: 5.5.11
 
-CREATE SCHEMA IF NOT EXISTS `swg` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `swg` ;
-
--- -----------------------------------------------------
--- Table `swg`.`confvista`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`confvista` (
-  `idconfvista` INT NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada configuración de la vista de cada empresa que se registre en la base de datos del sistema (SWG).' ,
-  `nombre` VARCHAR(45) NOT NULL COMMENT 'Diseño(s) con el nombre comercial de cada empresa registrada en la base de datos del sistema (SWG) para su personalización.' ,
-  `slide1` VARCHAR(200) NULL COMMENT 'Campo para almacenar la url de la imagenes del Slide 1' ,
-  `info1` VARCHAR(50) NULL COMMENT 'Proporciona informacion rapida acerca de la imagen del slide1' ,
-  `slide2` VARCHAR(200) NULL COMMENT 'Campo para almacenar la url de la imagenes del Slide 2' ,
-  `info2` VARCHAR(50) NULL COMMENT 'Proporciona informacion rapida acerca de la imagen del slide2' ,
-  `slide3` VARCHAR(200) NULL COMMENT 'Campo para almacenar la url de la imagenes del Slide 3' ,
-  `info3` VARCHAR(50) NULL COMMENT 'Proporciona informacion rapida acerca de la imagen del slide 3' ,
-  `estatus` TINYINT(1) NOT NULL COMMENT 'Estado de cada diseño registrado en la base de datos del sistema para cada una de las empresas registradas en la base de datos puede ser activo o inactivo.\n\n' ,
-  PRIMARY KEY (`idconfvista`) )
-ENGINE = InnoDB;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
--- -----------------------------------------------------
--- Table `swg`.`empresa`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`empresa` (
-  `idempresa` INT NOT NULL AUTO_INCREMENT COMMENT 'Número identificador único e irrepetible que se le asignará a cada empresa que se registre en la base de datos del sistema (SWG).' ,
-  `direccion` VARCHAR(45) NOT NULL COMMENT 'Dirección fiscal y/o de ubicación de la empresa que se registre en la base de datos del sistema (SWG).' ,
-  `correo` VARCHAR(45) NOT NULL COMMENT 'Correo electrónico para notificaciones y contacto de cada empresa que se registre en la base de datos del sistema (SWG).' ,
-  `idconfvista` INT NOT NULL COMMENT 'Llave foránea que se relaciona con la tabla confvista de la base de datos, para mostrar la configuración personalizada de las vistas de cada empresa registrada en la base de datos del sistema (SWG).' ,
-  PRIMARY KEY (`idempresa`) )
-ENGINE = InnoDB;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
--- -----------------------------------------------------
--- Table `swg`.`nivel`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`nivel` (
-  `idnivel` INT NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada nivel de usuario que se registre en la base de datos del sistema (SWG).' ,
-  `nombre` VARCHAR(45) NOT NULL COMMENT 'Nombre breve que describa el nivel de acceso con el que se contara en la base de datos para ser asignado a los usuarios del sistema.' ,
-  `estatus` TINYINT(1) NOT NULL COMMENT 'Situación que guardara el registro del nivel cread oen la base de datos.' ,
-  PRIMARY KEY (`idnivel`) )
-ENGINE = InnoDB;
+--
+-- Base de datos: `swg`
+--
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `swg`.`usuario`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`usuario` (
-  `idusuario` INT NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador unico e irrepetible que se le asignara cada usuario',
-  `user` VARCHAR(45) NOT NULL COMMENT 'Nombres de usuario para poder ingresar al sistema.' ,
-  `pass` VARCHAR(45) NOT NULL COMMENT 'Contraseña de autentificación para ingreso del sistema.' ,
-  `estatus` TINYINT(1) NOT NULL COMMENT 'Estado los usuarios.' ,
-  `idnivel` INT NOT NULL COMMENT 'Clave foranea del nivel que tiene cada usuario.' ,
-  PRIMARY KEY (`idusuario`) )
-ENGINE = InnoDB;
+--
+-- Estructura de tabla para la tabla `altaproductos`
+--
 
--- -----------------------------------------------------
--- Table `swg`.`empleados`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`empleados` (
-  `idempleados` INT NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada empleado que se registre en la base de datos del sistema (SWG).' ,
-  `nombre` VARCHAR(45) NOT NULL COMMENT 'Nombre(s) del empleado que se registre en la base de datos del sistema (SWG).' ,
-  `apellido` VARCHAR(45) NOT NULL COMMENT 'Apellidos del empleado que se registre en la base de datos del sistema (SWG).' ,
-  `telefono` VARCHAR(45) NOT NULL COMMENT 'Número telefonico personal del empleado que se registre en la base de datos del sistema (SWG).' ,
-  `estatus` TINYINT(1) NOT NULL COMMENT 'Situación o estado en el que se podra encontrar el empleado para poder accesar al sistema SWG.' ,
-  `idempresa` INT NOT NULL COMMENT 'Empresa a la que pertenece el empleado que se registra en la base de datos del sistema.' ,
-  `idusuario` INT NOT NULL COMMENT 'identificador de usuario al que pertenece cada empleado',
-  PRIMARY KEY (`idempleados`) )
-ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `altaproductos` (
+  `idaltaproductos` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada alta de producto que se registre en la base de datos del sistema (SWG).',
+  `fecha` datetime NOT NULL COMMENT 'Fecha en la que se efectuo el registro dentro de la base de datos del sistema.',
+  `estatus` tinyint(1) NOT NULL COMMENT 'Estado visible de las altas realizadas',
+  `idempleados` int(11) NOT NULL COMMENT 'Personal de la empresa responsable del registro efectuado en la base de datops del sistema.',
+  `idproductos` int(11) NOT NULL COMMENT 'Nombre del producto registrado en la base de datos.',
+  PRIMARY KEY (`idaltaproductos`),
+  KEY `fk_altapro_empleados` (`idempleados`),
+  KEY `fk_altapro_productos` (`idproductos`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
--- -----------------------------------------------------
--- Table `swg`.`datosfacturacion`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`datosfacturacion` (
-  `iddatosfacturacion` INT NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada registro de datos fiscales de cada empresa que se ingrese en la base de datos del sistema (SWG).' ,
-  `razon` VARCHAR(45) NOT NULL COMMENT 'Nombre o razón social con la que se encuentras registrada ante la Secretaria de Hacienda y Credito Publico cada empresa que se registre en la base de datos del sistema.' ,
-  `rfc` VARCHAR(45) NOT NULL COMMENT 'Registro Federal de Contribullentes asignado por la SHCP a cada empresa que se registre en la base de datos del sistema.' ,
-  `direccion` VARCHAR(45) NOT NULL COMMENT 'Domicilio fiscal registrado ante la SHCP de cada empresa que se agrege a la base de datos del sistema.' ,
-  `cp` VARCHAR(45) NOT NULL COMMENT 'Codigo Postal de la ubicación de la empresa registrada en la base de datos del sistema.' ,
-  `municipio` VARCHAR(45) NOT NULL COMMENT 'Municipo al que pertenece el domicilo fiscal registrado de cada emprtesa en la base de datos del sistema.' ,
-  `estado` VARCHAR(45) NOT NULL COMMENT 'Estado al que pertenece el domicilo fiscal registrado de cada emprtesa en la base de datos del sistema.' ,
-  `estatus` TINYINT(1) NOT NULL COMMENT 'Estado que guarda el registro de cada empresa dentro de la base de datos del sistema.' ,
-  `idempresa` INT NOT NULL COMMENT 'Nombre de la empresa a la que pertenece el domicilio fiscal registrado en la base de datos del sistema.' ,
-  PRIMARY KEY (`iddatosfacturacion`) )
-ENGINE = InnoDB;
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `swg`.`proveedor`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`proveedor` (
-  `idproveedor` INT NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada proveedor que se registre en la base de datos del sistema (SWG).' ,
-  `nombre` VARCHAR(45) NOT NULL COMMENT 'Nombre o razon social del proveedor que se registre en la base de datos del sistema (SWG).' ,
-  `direccion` VARCHAR(80) NOT NULL COMMENT 'Dirección fiscal y/o de ubicación del proveedor que se registre en la base de datos del sistema (SWG).' ,
-  `telefono` VARCHAR(45) NOT NULL COMMENT 'Número telefonico de contacto del proveedor que se registre en la base de datos del sistema (SWG).' ,
-  `telefono1` VARCHAR(45) NULL COMMENT 'Número telefonico opcional para contactar al proveedor que se registre en la base de datos del sistema (SWG).' ,
-  `correo` VARCHAR(45) NOT NULL COMMENT 'Correo electrónico para notificaciones y contacto de cada proveedor que se registre en la base de datos del sistema (SWG).' ,
-  `estatus` TINYINT(1) NOT NULL COMMENT 'Estado que guarda el registro de cada proveedor dentro de la base de datos del sistema.' ,
-  PRIMARY KEY (`idproveedor`) )
-ENGINE = InnoDB;
+--
+-- Estructura de tabla para la tabla `cliente`
+--
 
+CREATE TABLE IF NOT EXISTS `cliente` (
+  `idcliente` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador único e irrepetible que se le asignará a cada cliente que se registre en la base de datos del sistema (SWG).',
+  `nombre` varchar(45) NOT NULL COMMENT 'Nombre del cliente objeto de registro en la base de datos del sistema.\n',
+  `apellido` varchar(45) NOT NULL COMMENT 'Apellidos del cliente objeto de registro en la base de datos del sistema.',
+  `telefono` varchar(45) NOT NULL COMMENT 'Número telefonico de contacto del cliente registrado en la base de datos del sistema.',
+  `correo` varchar(45) NOT NULL COMMENT 'Correo electrónico para notificaciones y contacto de cada cliente que se registre en la base de datos del sistema (SWG).',
+  `estatus` tinyint(1) NOT NULL COMMENT 'Situación o estad oque guardara cada cliente dentro de la base de datos del sisitema.',
+  `idusuario` int(11) NOT NULL,
+  PRIMARY KEY (`idcliente`),
+  KEY `fk_cliente_usuario` (`idusuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
--- -----------------------------------------------------
--- Table `swg`.`productos`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`productos` (
-  `idproductos` INT NOT NULL AUTO_INCREMENT COMMENT 'Número identificador único e irrepetible que se le asignará a cada producto que se registre en la base de datos del sistema (SWG).' ,
-  `nombre` VARCHAR(25) NOT NULL COMMENT 'Nombre del producto registrado en la base de datos del sisitema.' ,
-  `resumen` VARCHAR(50) NOT NULL COMMENT 'Nombre corto o comercial con el que se identifica a cada producto registrado en la base de datos del sisitema.' ,
-  `descripcion` TEXT NOT NULL COMMENT 'Breve descripción de cada producto registrado en la base de datos del sistema.' ,
-  `cantidad` INT NOT NULL COMMENT 'Número de piezas de cada producto registradas en la base de datos del sisitema.' ,
-  `precio` DOUBLE NOT NULL COMMENT 'Precio unitario de venta de cada producto registrado en la base de datos del sisitema.' ,
-  `estatus` TINYINT(1) NOT NULL COMMENT 'Estado o situación que guarda cada registro de producto en la base de datos del sistema.' ,
-  `idproveedor` INT NOT NULL COMMENT 'Nombre del proveedor que distribuye cada producto registrado en la base de datos del sisitema.' ,
-  PRIMARY KEY (`idproductos`) )
-ENGINE = InnoDB;
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `swg`.`altaproductos`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`altaproductos` (
-  `idaltaproductos` INT NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada alta de producto que se registre en la base de datos del sistema (SWG).' ,
-  `fecha` DATETIME NOT NULL COMMENT 'Fecha en la que se efectuo el registro dentro de la base de datos del sistema.' ,
-  `estatus` TINYINT(1) NOT NULL COMMENT 'Estado visible de las altas realizadas' ,
-  `idempleados` INT NOT NULL COMMENT 'Personal de la empresa responsable del registro efectuado en la base de datops del sistema.' ,
-  `idproductos` INT NOT NULL COMMENT 'Nombre del producto registrado en la base de datos.' ,
-  PRIMARY KEY (`idaltaproductos`) )
-ENGINE = InnoDB;
+--
+-- Estructura de tabla para la tabla `compra`
+--
 
--- -----------------------------------------------------
--- Table `swg`.`confvistapro`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`confvistapro` (
-  `idconfvistapro` INT NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada configuración de la vista o imagen de un producto que se registre en la base de datos del sistema (SWG).' ,
-  `rutaimagen` VARCHAR(200) NOT NULL COMMENT 'Ruta especificada dentro del servidor donde se encuentra alojada la imagen del producto a configurar en el sistema.' ,
-  `estatus` TINYINT(1) NOT NULL COMMENT 'Estad oque guarda la imagen del producto registrada en la base de datos del sisitema.' ,
-  `idproductos` INT NOT NULL COMMENT 'Nombre del producto al que hace referencia la imagen registrada en la base de datos del sisitema.' ,
-  PRIMARY KEY (`idconfvistapro`) )
-ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `compra` (
+  `idcompra` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador único e irrepetible que se le asignará a cada registro de compra ingresado en la base de datos del sistema (SWG).',
+  `fecha` datetime NOT NULL COMMENT 'Fecha y hora en la que se realizo dicho registro en la base de datos del sistema.',
+  `cantidad` double NOT NULL COMMENT 'Importe de la compra registrada.',
+  `iva` double NOT NULL COMMENT 'Impuesto al valor agregado de la compra registrada.',
+  `total` double NOT NULL COMMENT 'Importe neto de la compra registrada despues de impuestos y descuentos.',
+  `estatus` tinyint(1) NOT NULL COMMENT 'Estado en el que se encuentra la compra registrada.',
+  `idcliente` int(11) NOT NULL COMMENT 'Nombre del cliente que realizo la compra.',
+  `idproductos` int(11) NOT NULL COMMENT 'Nombre del o los productos objeto de la compra.',
+  PRIMARY KEY (`idcompra`),
+  KEY `fk_compra_cliente` (`idcliente`),
+  KEY `fk_compra_productos` (`idproductos`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `swg`.`cliente`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`cliente` (
-  `idcliente` INT NOT NULL AUTO_INCREMENT COMMENT 'Número identificador único e irrepetible que se le asignará a cada cliente que se registre en la base de datos del sistema (SWG).' ,
-  `nombre` VARCHAR(45) NOT NULL COMMENT 'Nombre del cliente objeto de registro en la base de datos del sistema.\n' ,
-  `apellido` VARCHAR(45) NOT NULL COMMENT 'Apellidos del cliente objeto de registro en la base de datos del sistema.' ,
-  `telefono` VARCHAR(45) NOT NULL COMMENT 'Número telefonico de contacto del cliente registrado en la base de datos del sistema.' ,
-  `correo` VARCHAR(45) NOT NULL COMMENT 'Correo electrónico para notificaciones y contacto de cada cliente que se registre en la base de datos del sistema (SWG).' ,
-  `estatus` TINYINT(1) NOT NULL COMMENT 'Situación o estad oque guardara cada cliente dentro de la base de datos del sisitema.' ,
-  `idusuario` INT NOT NULL ,
-  PRIMARY KEY (`idcliente`) )
-ENGINE = InnoDB;
+--
+-- Estructura de tabla para la tabla `confvista`
+--
 
--- -----------------------------------------------------
--- Table `swg`.`direccioncliente`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`direccioncliente` (
-  `iddireccioncliente` INT NOT NULL AUTO_INCREMENT COMMENT 'Número identificador único e irrepetible que se le asignará a cada dirección que se registre en la base de datos del sistema (SWG).' ,
-  `direccion` VARCHAR(60) NOT NULL COMMENT 'Direccion general del domiciolio del cliente.' ,
-  `cp` VARCHAR(45) NOT NULL COMMENT 'Codigo Postal pertenceciente al domicilio del cliente que se registre en la base de datos del sistema.' ,
-  `estado` VARCHAR(45) NOT NULL COMMENT 'Estado pertenceciente al domicilio del cliente que se registre en la base de datos del sistema.' ,
-  `referencia` TEXT NULL COMMENT 'Rasgo identificador del domicilio del cliente a registrar en la base de datos del sistema.' ,
-  `estatus` TINYINT(1) NOT NULL COMMENT 'Estado o situación que guarda el registro del domicilio existente en la base de datos del sisitema.' ,
-  `idcliente` INT NOT NULL COMMENT 'Nombre del cliente al que pertenece el domicilio registrado.' ,
-  PRIMARY KEY (`iddireccioncliente`) )
-ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `confvista` (
+  `idconfvista` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada configuración de la vista de cada empresa que se registre en la base de datos del sistema (SWG).',
+  `nombre` varchar(45) NOT NULL COMMENT 'Diseño(s) con el nombre comercial de cada empresa registrada en la base de datos del sistema (SWG) para su personalización.',
+  `slide1` varchar(200) DEFAULT NULL COMMENT 'Campo para almacenar la url de la imagenes del Slide 1',
+  `info1` varchar(50) DEFAULT NULL COMMENT 'Proporciona informacion rapida acerca de la imagen del slide1',
+  `slide2` varchar(200) DEFAULT NULL COMMENT 'Campo para almacenar la url de la imagenes del Slide 2',
+  `info2` varchar(50) DEFAULT NULL COMMENT 'Proporciona informacion rapida acerca de la imagen del slide2',
+  `slide3` varchar(200) DEFAULT NULL COMMENT 'Campo para almacenar la url de la imagenes del Slide 3',
+  `info3` varchar(50) DEFAULT NULL COMMENT 'Proporciona informacion rapida acerca de la imagen del slide 3',
+  `estatus` tinyint(1) NOT NULL COMMENT 'Estado de cada diseño registrado en la base de datos del sistema para cada una de las empresas registradas en la base de datos puede ser activo o inactivo.\n\n',
+  PRIMARY KEY (`idconfvista`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
--- -----------------------------------------------------
--- Table `swg`.`factcliente`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`factcliente` (
-  `idfactcliente` INT NOT NULL AUTO_INCREMENT COMMENT 'Número identificador único e irrepetible que se le asignará a cada factura emitida y registrada en la base de datos del sistema (SWG).' ,
-  `razon` VARCHAR(45) NOT NULL COMMENT 'Nómbre fiscal que se le asignará a la factura registradaen la base de datos del sistema.' ,
-  `rfc` VARCHAR(45) NOT NULL COMMENT 'Registro Federal de Contribullentes asignado por la SHCP a cada cliente que se registre en la base de datos del sistema.' ,
-  `direccion` VARCHAR(45) NOT NULL COMMENT 'Domicilio fiscal registrado ante la SHCP de cada cliente que se agrege a la base de datos del sistema.' ,
-  `municipio` VARCHAR(45) NOT NULL COMMENT 'Municipo al que pertenece el domicilo fiscal registrado de cada cliente en la base de datos del sistema.' ,
-  `estado` VARCHAR(45) NOT NULL COMMENT 'Estado al que pertenece el domicilo fiscal registrado de cada cliente en la base de datos del sistema.' ,
-  `status` TINYINT(1) NOT NULL COMMENT 'Estado que guarda el registro de cada factura de un cliente dentro de la base de datos del sistema.' ,
-  `idcliente` INT NOT NULL COMMENT 'Nombre no necesariamente fiscal de cada cliente al que le pertenece la factura registradaen la base de datos del sisitema.' ,
-  PRIMARY KEY (`idfactcliente`) )
-ENGINE = InnoDB;
+-- --------------------------------------------------------
 
+--
+-- Estructura de tabla para la tabla `cuentas`
+--
 
--- -----------------------------------------------------
--- Table `swg`.`compra`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`compra` (
-  `idcompra` INT NOT NULL AUTO_INCREMENT COMMENT 'Número identificador único e irrepetible que se le asignará a cada registro de compra ingresado en la base de datos del sistema (SWG).' ,
-  `fecha` DATETIME NOT NULL COMMENT 'Fecha y hora en la que se realizo dicho registro en la base de datos del sistema.' ,
-  `cantidad` DOUBLE NOT NULL COMMENT 'Importe de la compra registrada.' ,
-  `iva` DOUBLE NOT NULL COMMENT 'Impuesto al valor agregado de la compra registrada.' ,
-  `total` DOUBLE NOT NULL COMMENT 'Importe neto de la compra registrada despues de impuestos y descuentos.' ,
-  `estatus` TINYINT(1) NOT NULL COMMENT 'Estado en el que se encuentra la compra registrada.' ,
-  `idcliente` INT NOT NULL COMMENT 'Nombre del cliente que realizo la compra.' ,
-  `idproductos` INT NOT NULL COMMENT 'Nombre del o los productos objeto de la compra.' ,
-  PRIMARY KEY (`idcompra`) )
-ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `cuentas` (
+  `idcuentas` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada registro de las cuentas de cada empresa que se ingrese en la base de datos del sistema (SWG).',
+  `banco` varchar(45) NOT NULL COMMENT 'Nombre de la institución bancaria donde aperturto la cuenta la empresa registrada en la base de datos.',
+  `nombre` varchar(45) NOT NULL COMMENT 'Nombre con el que se encuentra registrada en la institución bancaria la cuenta registrada en la base de datos.',
+  `cuenta` varchar(45) NOT NULL COMMENT 'Número de cuenta proporcionado por la institución financiera.',
+  `estatus` tinyint(1) NOT NULL COMMENT 'Situación de la cuenta registrada dentro de la base de datos del sistema.',
+  `idempresa` int(11) NOT NULL COMMENT 'Nombre de la empresa a la que pertenece el registro de la cuenta en la base de datos del sistema.',
+  PRIMARY KEY (`idcuentas`),
+  KEY `fk_cuentas_empresa` (`idempresa`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
--- -----------------------------------------------------
--- Table `swg`.`cuentas`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `swg`.`cuentas` (
-  `idcuentas` INT NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada registro de las cuentas de cada empresa que se ingrese en la base de datos del sistema (SWG).' ,
-  `banco` VARCHAR(45) NOT NULL COMMENT 'Nombre de la institución bancaria donde aperturto la cuenta la empresa registrada en la base de datos.' ,
-  `nombre` VARCHAR(45) NOT NULL COMMENT 'Nombre con el que se encuentra registrada en la institución bancaria la cuenta registrada en la base de datos.' ,
-  `cuenta` VARCHAR(45) NOT NULL COMMENT 'Número de cuenta proporcionado por la institución financiera.' ,
-  `estatus` TINYINT(1) NOT NULL COMMENT 'Situación de la cuenta registrada dentro de la base de datos del sistema.' ,
-  `idempresa` INT NOT NULL COMMENT 'Nombre de la empresa a la que pertenece el registro de la cuenta en la base de datos del sistema.' ,
-  PRIMARY KEY (`idcuentas`) )
-ENGINE = InnoDB;
+-- --------------------------------------------------------
 
--- ----------------------------------------------------
--- llaves foraneas
--- ----------------------------------------------------
-alter table empresa
-  add constraint fk_empresa_confvista foreign key (idconfvista) references confvista (idconfvista) 
-  ON UPDATE CASCADE;
+--
+-- Estructura de tabla para la tabla `datosfacturacion`
+--
 
-alter table usuario
-  add constraint fk_usuario_nivel foreign key (idnivel) references idnivel (idnivel)
-  ON UPDATE CASCADE;
+CREATE TABLE IF NOT EXISTS `datosfacturacion` (
+  `iddatosfacturacion` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada registro de datos fiscales de cada empresa que se ingrese en la base de datos del sistema (SWG).',
+  `razon` varchar(45) NOT NULL COMMENT 'Nombre o razón social con la que se encuentras registrada ante la Secretaria de Hacienda y Credito Publico cada empresa que se registre en la base de datos del sistema.',
+  `rfc` varchar(45) NOT NULL COMMENT 'Registro Federal de Contribullentes asignado por la SHCP a cada empresa que se registre en la base de datos del sistema.',
+  `direccion` varchar(45) NOT NULL COMMENT 'Domicilio fiscal registrado ante la SHCP de cada empresa que se agrege a la base de datos del sistema.',
+  `cp` varchar(45) NOT NULL COMMENT 'Codigo Postal de la ubicación de la empresa registrada en la base de datos del sistema.',
+  `municipio` varchar(45) NOT NULL COMMENT 'Municipo al que pertenece el domicilo fiscal registrado de cada emprtesa en la base de datos del sistema.',
+  `estado` varchar(45) NOT NULL COMMENT 'Estado al que pertenece el domicilo fiscal registrado de cada emprtesa en la base de datos del sistema.',
+  `estatus` tinyint(1) NOT NULL COMMENT 'Estado que guarda el registro de cada empresa dentro de la base de datos del sistema.',
+  `idempresa` int(11) NOT NULL COMMENT 'Nombre de la empresa a la que pertenece el domicilio fiscal registrado en la base de datos del sistema.',
+  PRIMARY KEY (`iddatosfacturacion`),
+  KEY `fk_datos_empresa` (`idempresa`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-alter table empleados
-  add constraint fk_empleado_empresa foreign key (idempresa) references empresa (idempresa)
-  ON UPDATE CASCADE,
-  add constraint fk_empleado_usuario foreign key (idusuario) references usuario (idusuario)
-  ON UPDATE CASCADE;
+-- --------------------------------------------------------
 
-alter table datosfacturacion
-  add constraint fk_datos_empresa foreign key (idempresa) references empresa (idempresa)
-  ON UPDATE CASCADE;
+--
+-- Estructura de tabla para la tabla `direccioncliente`
+--
 
-alter table productos
- add constraint fk_productos_proveedor foreign key (idproveedor) references proveedor (idproveedor)
- ON UPDATE CASCADE;
+CREATE TABLE IF NOT EXISTS `direccioncliente` (
+  `iddireccioncliente` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador único e irrepetible que se le asignará a cada dirección que se registre en la base de datos del sistema (SWG).',
+  `direccion` varchar(60) NOT NULL COMMENT 'Direccion general del domiciolio del cliente.',
+  `cp` varchar(45) NOT NULL COMMENT 'Codigo Postal pertenceciente al domicilio del cliente que se registre en la base de datos del sistema.',
+  `estado` varchar(45) NOT NULL COMMENT 'Estado pertenceciente al domicilio del cliente que se registre en la base de datos del sistema.',
+  `referencia` text COMMENT 'Rasgo identificador del domicilio del cliente a registrar en la base de datos del sistema.',
+  `estatus` tinyint(1) NOT NULL COMMENT 'Estado o situación que guarda el registro del domicilio existente en la base de datos del sisitema.',
+  `idcliente` int(11) NOT NULL COMMENT 'Nombre del cliente al que pertenece el domicilio registrado.',
+  PRIMARY KEY (`iddireccioncliente`),
+  KEY `fk_dircliente_cliente` (`idcliente`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-alter table altaproductos
-  add constraint fk_altapro_empleados foreign key (idempleados) references empleados (idempleados)
-  ON UPDATE CASCADE,
-  add constraint fk_altapro_productos foreign key (idproductos) references productos (idproductos)
-  ON UPDATE CASCADE;
+-- --------------------------------------------------------
 
-alter table confvistapro
- add constraint fk_confvista_productos foreign key (idproductos) references productos (idproductos)
- ON UPDATE CASCADE;
+--
+-- Estructura de tabla para la tabla `empleados`
+--
 
-alter table cliente
-  add constraint fk_cliente_usuario foreign key (idusuario) references usuario (idusuario)
-  ON UPDATE CASCADE;
+CREATE TABLE IF NOT EXISTS `empleados` (
+  `idempleados` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada empleado que se registre en la base de datos del sistema (SWG).',
+  `nombre` varchar(45) NOT NULL COMMENT 'Nombre(s) del empleado que se registre en la base de datos del sistema (SWG).',
+  `apellido` varchar(45) NOT NULL COMMENT 'Apellidos del empleado que se registre en la base de datos del sistema (SWG).',
+  `telefono` varchar(45) NOT NULL COMMENT 'Número telefonico personal del empleado que se registre en la base de datos del sistema (SWG).',
+  `estatus` tinyint(1) NOT NULL COMMENT 'Situación o estado en el que se podra encontrar el empleado para poder accesar al sistema SWG.',
+  `idempresa` int(11) NOT NULL COMMENT 'Empresa a la que pertenece el empleado que se registra en la base de datos del sistema.',
+  `idusuario` int(11) NOT NULL COMMENT 'identificador de usuario al que pertenece cada empleado',
+  PRIMARY KEY (`idempleados`),
+  KEY `fk_empleado_empresa` (`idempresa`),
+  KEY `fk_empleado_usuario` (`idusuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-alter table direccioncliente
-  add constraint fk_dircliente_cliente foreign key (idcliente) references cliente (idcliente)
-  ON UPDATE CASCADE;
+-- --------------------------------------------------------
 
-alter table factcliente
-  add constraint fk_facliente_cliente foreign key (idcliente) references cliente (idcliente)
-  ON UPDATE CASCADE;
+--
+-- Estructura de tabla para la tabla `empresa`
+--
 
-alter table compra
-  add constraint fk_compra_cliente foreign key (idcliente) references cliente (idcliente)
-  ON UPDATE CASCADE,
-  add constraint fk_compra_productos foreign key (idproductos) references productos (idproductos)
-  ON UPDATE CASCADE;
+CREATE TABLE IF NOT EXISTS `empresa` (
+  `idempresa` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador único e irrepetible que se le asignará a cada empresa que se registre en la base de datos del sistema (SWG).',
+  `direccion` varchar(45) NOT NULL COMMENT 'Dirección fiscal y/o de ubicación de la empresa que se registre en la base de datos del sistema (SWG).',
+  `correo` varchar(45) NOT NULL COMMENT 'Correo electrónico para notificaciones y contacto de cada empresa que se registre en la base de datos del sistema (SWG).',
+  `idconfvista` int(11) NOT NULL COMMENT 'Llave foránea que se relaciona con la tabla confvista de la base de datos, para mostrar la configuración personalizada de las vistas de cada empresa registrada en la base de datos del sistema (SWG).',
+  PRIMARY KEY (`idempresa`),
+  KEY `fk_empresa_confvista` (`idconfvista`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-alter table cuentas
-  add constraint fk_cuentas_empresa foreign key (idempresa) references empresa (idempresa)
-  ON UPDATE CASCADE;
+-- --------------------------------------------------------
 
-USE `swg` ;
+--
+-- Estructura de tabla para la tabla `factcliente`
+--
 
+CREATE TABLE IF NOT EXISTS `factcliente` (
+  `idfactcliente` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador único e irrepetible que se le asignará a cada factura emitida y registrada en la base de datos del sistema (SWG).',
+  `razon` varchar(45) NOT NULL COMMENT 'Nómbre fiscal que se le asignará a la factura registradaen la base de datos del sistema.',
+  `rfc` varchar(45) NOT NULL COMMENT 'Registro Federal de Contribullentes asignado por la SHCP a cada cliente que se registre en la base de datos del sistema.',
+  `direccion` varchar(45) NOT NULL COMMENT 'Domicilio fiscal registrado ante la SHCP de cada cliente que se agrege a la base de datos del sistema.',
+  `municipio` varchar(45) NOT NULL COMMENT 'Municipo al que pertenece el domicilo fiscal registrado de cada cliente en la base de datos del sistema.',
+  `estado` varchar(45) NOT NULL COMMENT 'Estado al que pertenece el domicilo fiscal registrado de cada cliente en la base de datos del sistema.',
+  `status` tinyint(1) NOT NULL COMMENT 'Estado que guarda el registro de cada factura de un cliente dentro de la base de datos del sistema.',
+  `idcliente` int(11) NOT NULL COMMENT 'Nombre no necesariamente fiscal de cada cliente al que le pertenece la factura registradaen la base de datos del sisitema.',
+  PRIMARY KEY (`idfactcliente`),
+  KEY `fk_facliente_cliente` (`idcliente`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `nivel`
+--
+
+CREATE TABLE IF NOT EXISTS `nivel` (
+  `idnivel` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada nivel de usuario que se registre en la base de datos del sistema (SWG).',
+  `nombre` varchar(45) NOT NULL COMMENT 'Nombre breve que describa el nivel de acceso con el que se contara en la base de datos para ser asignado a los usuarios del sistema.',
+  `estatus` tinyint(1) NOT NULL COMMENT 'Situación que guardara el registro del nivel cread oen la base de datos.',
+  PRIMARY KEY (`idnivel`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productos`
+--
+
+CREATE TABLE IF NOT EXISTS `productos` (
+  `idproductos` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador único e irrepetible que se le asignará a cada producto que se registre en la base de datos del sistema (SWG).',
+  `nombre` varchar(25) NOT NULL COMMENT 'Nombre del producto registrado en la base de datos del sisitema.',
+  `resumen` varchar(50) NOT NULL COMMENT 'Nombre corto o comercial con el que se identifica a cada producto registrado en la base de datos del sisitema.',
+  `descripcion` text NOT NULL COMMENT 'Breve descripción de cada producto registrado en la base de datos del sistema.',
+  `cantidad` int(11) NOT NULL COMMENT 'Número de piezas de cada producto registradas en la base de datos del sisitema.',
+  `precio` double NOT NULL COMMENT 'Precio unitario de venta de cada producto registrado en la base de datos del sisitema.',
+  `imagen` varchar(200) NOT NULL COMMENT 'Almacena la url de la imagen del producto',
+  `estatus` tinyint(1) NOT NULL COMMENT 'Estado o situación que guarda cada registro de producto en la base de datos del sistema.',
+  `idproveedor` int(11) NOT NULL COMMENT 'Nombre del proveedor que distribuye cada producto registrado en la base de datos del sisitema.',
+  PRIMARY KEY (`idproductos`),
+  KEY `idproveedor` (`idproveedor`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `proveedor`
+--
+
+CREATE TABLE IF NOT EXISTS `proveedor` (
+  `idproveedor` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada proveedor que se registre en la base de datos del sistema (SWG).',
+  `nombre` varchar(45) NOT NULL COMMENT 'Nombre o razon social del proveedor que se registre en la base de datos del sistema (SWG).',
+  `direccion` varchar(80) NOT NULL COMMENT 'Dirección fiscal y/o de ubicación del proveedor que se registre en la base de datos del sistema (SWG).',
+  `telefono` varchar(45) NOT NULL COMMENT 'Número telefonico de contacto del proveedor que se registre en la base de datos del sistema (SWG).',
+  `telefono1` varchar(45) DEFAULT NULL COMMENT 'Número telefonico opcional para contactar al proveedor que se registre en la base de datos del sistema (SWG).',
+  `correo` varchar(45) NOT NULL COMMENT 'Correo electrónico para notificaciones y contacto de cada proveedor que se registre en la base de datos del sistema (SWG).',
+  `estatus` tinyint(1) NOT NULL COMMENT 'Estado que guarda el registro de cada proveedor dentro de la base de datos del sistema.',
+  PRIMARY KEY (`idproveedor`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `idusuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Numero identificador unico e irrepetible que se le asignara cada usuario',
+  `user` varchar(45) NOT NULL COMMENT 'Nombres de usuario para poder ingresar al sistema.',
+  `pass` varchar(45) NOT NULL COMMENT 'Contraseña de autentificación para ingreso del sistema.',
+  `estatus` tinyint(1) NOT NULL COMMENT 'Estado los usuarios.',
+  `idnivel` int(11) NOT NULL COMMENT 'Clave foranea del nivel que tiene cada usuario.',
+  PRIMARY KEY (`idusuario`),
+  KEY `fk_usuario_nivel` (`idnivel`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `altaproductos`
+--
+ALTER TABLE `altaproductos`
+  ADD CONSTRAINT `fk_altapro_empleados` FOREIGN KEY (`idempleados`) REFERENCES `empleados` (`idempleados`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_altapro_productos` FOREIGN KEY (`idproductos`) REFERENCES `productos` (`idproductos`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  ADD CONSTRAINT `fk_cliente_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `compra`
+--
+ALTER TABLE `compra`
+  ADD CONSTRAINT `fk_compra_cliente` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idcliente`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_compra_productos` FOREIGN KEY (`idproductos`) REFERENCES `productos` (`idproductos`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `cuentas`
+--
+ALTER TABLE `cuentas`
+  ADD CONSTRAINT `fk_cuentas_empresa` FOREIGN KEY (`idempresa`) REFERENCES `empresa` (`idempresa`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `datosfacturacion`
+--
+ALTER TABLE `datosfacturacion`
+  ADD CONSTRAINT `fk_datos_empresa` FOREIGN KEY (`idempresa`) REFERENCES `empresa` (`idempresa`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `direccioncliente`
+--
+ALTER TABLE `direccioncliente`
+  ADD CONSTRAINT `fk_dircliente_cliente` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idcliente`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `empleados`
+--
+ALTER TABLE `empleados`
+  ADD CONSTRAINT `fk_empleado_empresa` FOREIGN KEY (`idempresa`) REFERENCES `empresa` (`idempresa`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_empleado_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `empresa`
+--
+ALTER TABLE `empresa`
+  ADD CONSTRAINT `fk_empresa_confvista` FOREIGN KEY (`idconfvista`) REFERENCES `confvista` (`idconfvista`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `factcliente`
+--
+ALTER TABLE `factcliente`
+  ADD CONSTRAINT `fk_facliente_cliente` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idcliente`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD CONSTRAINT `fk_productos_proveedor` FOREIGN KEY (`idproveedor`) REFERENCES `proveedor` (`idproveedor`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `fk_usuario_nivel` FOREIGN KEY (`idnivel`) REFERENCES `idnivel` (`idnivel`) ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
