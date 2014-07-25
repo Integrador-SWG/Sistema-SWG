@@ -67,7 +67,6 @@
       $valid = false;
     }
 
-
     if (empty($pass)) {
       $passError = 'Por favor, ingrese una contraseña!';
       $valid = false;
@@ -75,6 +74,15 @@
 
     if (empty($pass2)) {
       $pass2Error = 'Por favor, ingrese una contraseña!';
+      $valid = false;
+    }
+
+    if($pass==$pass2)
+      {
+
+      }else{
+      $passError = 'Las contraseñas no coindicen';
+      $pass2Error = 'Las contraseñas no coindicen';
       $valid = false;
     }
 
@@ -104,7 +112,7 @@
               header('Location:ingreso.php');
             } else {
             //si no es valido volvemos al formulario inicial
-              header('Location: accedersesion.php');
+              header('Location: altacliente.php');
             }
           }
         }
