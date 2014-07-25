@@ -150,7 +150,7 @@
             <span class="icon-bar"></span>
           </button>
   
-          <a class="brand" href="index.php"><img src='ico/favicon1.png' title='SWG' border='0'></a>
+          <a class="brand" href="index.php">SWG</a>
           <div class="nav-collapse collapse">
             <ul class="nav" >
               <li><a href="index.php">Inicio</a></li>
