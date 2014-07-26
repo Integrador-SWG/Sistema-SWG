@@ -209,11 +209,10 @@ CREATE TABLE IF NOT EXISTS `factcliente` (
 --
 
 CREATE TABLE IF NOT EXISTS `nivel` (
-  `idnivel` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada nivel de usuario que se registre en la base de datos del sistema (SWG).',
-  `nombre` varchar(45) NOT NULL COMMENT 'Nombre breve que describa el nivel de acceso con el que se contara en la base de datos para ser asignado a los usuarios del sistema.',
+  `idnivel` varchar(20) NOT NULL COMMENT 'Número identificador unico e irrepetible que se le asignará a cada nivel de usuario que se registre en la base de datos del sistema (SWG).',
   `estatus` tinyint(1) NOT NULL COMMENT 'Situación que guardara el registro del nivel cread oen la base de datos.',
   PRIMARY KEY (`idnivel`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
@@ -339,7 +338,7 @@ ALTER TABLE `productos`
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `fk_usuario_nivel` FOREIGN KEY (`idnivel`) REFERENCES `idnivel` (`idnivel`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_usuario_nivel` FOREIGN KEY (`idnivel`) REFERENCES `nivel` (`idnivel`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
