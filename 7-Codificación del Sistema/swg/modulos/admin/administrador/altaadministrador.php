@@ -1,5 +1,6 @@
 <?php
 include ('../../basedatos.php');
+include ('../../funciones.php');
 
 session_start('usuario');
 
@@ -113,7 +114,21 @@ if ( !empty($_POST)) {
       $q->execute(array($nombre,$apellido,$telefono,$correo,$estatus,$resultado));
 
       Database::disconnect();
-      header('Location: ../clientes/listarcliente.php');
+//usa la funcion conexiones() que se ubica dentro de funciones.php
+if (conexiones($user, $pass, $idnivel="cliente", $estatus="1")){
+	//si es valido accedemos a index.php
+	header('Location:../clientes/listarcliente.php');
+} elseif (conexiones($user, $pass, $idnivel="administrador", $estatus="1")) {
+		//si es valido accedemos a administrador.php
+	header('Location:listaradministrador.php');
+		}elseif (conexiones($user, $pass, $idnivel="empleado", $estatus="1")) {
+			//si es valido accedemos a empleado.php
+				header('Location:../empleados/listarempleado.php');
+					}
+else {
+	//si no es valido volvemos al formulario inicial
+	header('Location: altaadministrador.php');
+}
      }
 
   }
