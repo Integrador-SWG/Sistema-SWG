@@ -8,62 +8,6 @@
  * Designed and built with all the love in the world by @mdo and @fat.
  */
 
-/* body#acceder {
-        padding-top: 60px;
-        padding-bottom: 40px;
-        background-color: #f5f5f5;
-      }
-
-      .form-signin {
-        max-width: 300px;
-        padding: 19px 29px 29px;
-        margin: 0 auto 20px;
-        background-color: #fff;
-        border: 1px solid #e5e5e5;
-        -webkit-border-radius: 5px;
-           -moz-border-radius: 5px;
-                border-radius: 5px;
-        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-                box-shadow: 0 1px 2px rgba(0,0,0,.05);
-      }
-      .form-signin .form-signin-heading,
-      .form-signin .checkbox {
-        margin-bottom: 10px;
-      }
-      .form-signin input[type="text"],
-      .form-signin input[type="password"] {
-        font-size: 16px;
-        height: auto;
-        margin-bottom: 15px;
-        padding: 7px 9px;
-      }*/
-
- .js-video {
-  height: 0;
-  padding-top: 25px;
-  padding-bottom: 67.5%;
-  margin-bottom: 10px;
-  position: relative;
-  overflow: hidden;
-}
- 
-.js-video.widescreen {
-  padding-bottom: 57.25%;
-}
- 
-.js-video.vimeo {
-  padding-top: 0;
-}
-
-.js-video embed, .js-video iframe, .js-video object, .js-video video {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
 .clearfix {
   *zoom: 1;
 }
@@ -277,12 +221,12 @@ textarea {
   }
 }
 
-body  {
-  margin: 12;
+body {
+  margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  line-height: 20px;/*Cambiar tamaño de header negro*/
-  color: #333333;/*CAmbia color de letra de toda el contenido*/
+  line-height: 20px;
+  color: #333333;
   background-color: #ffffff;
 }
 
@@ -860,9 +804,9 @@ h4 small {
 }
 
 .page-header {
-  padding-bottom: 9px; /*separacion con lo anterio*/
+  padding-bottom: 9px;
   margin: 20px 0 30px;
-  border-bottom: 1px solid #eeeeee;/*cambiar ultimo br de color y tamaño*/
+  border-bottom: 1px solid #eeeeee;
 }
 
 ul,
@@ -4486,7 +4430,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-text {
   margin-bottom: 0;
   line-height: 40px;
-  color: navbar navbar-inverse navbar-fixed-top;
+  color: #777777;
 }
 
 .navbar-link {
@@ -6174,12 +6118,11 @@ a.badge:focus {
 }
 
 .hero-unit {
-  padding: 30px;
-  /*padding: 60px;*/
+  padding: 60px;
   margin-bottom: 30px;
-  font-size: 18px;/*linea negra slide*/
+  font-size: 18px;
   font-weight: 200;
-  line-height: 30px;/*interlineado*/
+  line-height: 30px;
   color: inherit;
   background-color: #eeeeee;
   -webkit-border-radius: 6px;
