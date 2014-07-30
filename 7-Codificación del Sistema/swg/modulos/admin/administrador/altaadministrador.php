@@ -113,7 +113,7 @@ if ( !empty($_POST)) {
       $q->execute(array($nombre,$apellido,$telefono,$correo,$estatus,$resultado));
 
       Database::disconnect();
-      header('Location: ../clientes/listaradministrador.php');
+      header('Location: ../clientes/listarcliente.php');
      }
 
   }

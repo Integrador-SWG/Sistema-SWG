@@ -289,7 +289,7 @@ session_start('user');
               </div>
             </div>
 
-            <div class="form-group pull-right">
+            <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <button type="submit" class="btn btn-success btn-lg">Actualizar</button>
                   <a class="btn btn-danger btn-lg" href="listarempleado.php">Atr&aacute;s</a>
