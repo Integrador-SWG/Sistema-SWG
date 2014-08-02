@@ -114,26 +114,6 @@ CREATE TABLE IF NOT EXISTS `cuentas` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `datosfacturacion`
---
-
-CREATE TABLE IF NOT EXISTS `datosfacturacion` (
-  `iddatosfacturacion` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador unico e irrepetible que se le asignará a cada registro de datos fiscales de cada empresa que se ingrese en la base de datos del sistema (SWG).',
-  `razon` varchar(45) NOT NULL COMMENT 'Nombre o razón social con la que se encuentras registrada ante la Secretaria de Hacienda y Credito Publico cada empresa que se registre en la base de datos del sistema.',
-  `rfc` varchar(45) NOT NULL COMMENT 'Registro Federal de Contribullentes asignado por la SHCP a cada empresa que se registre en la base de datos del sistema.',
-  `direccion` varchar(45) NOT NULL COMMENT 'Domicilio fiscal registrado ante la SHCP de cada empresa que se agrege a la base de datos del sistema.',
-  `cp` varchar(45) NOT NULL COMMENT 'Codigo Postal de la ubicación de la empresa registrada en la base de datos del sistema.',
-  `municipio` varchar(45) NOT NULL COMMENT 'Municipo al que pertenece el domicilo fiscal registrado de cada emprtesa en la base de datos del sistema.',
-  `estado` varchar(45) NOT NULL COMMENT 'Estado al que pertenece el domicilo fiscal registrado de cada emprtesa en la base de datos del sistema.',
-  `estatus` tinyint(1) NOT NULL COMMENT 'Estado que guarda el registro de cada empresa dentro de la base de datos del sistema.',
-  `idempresa` int(11) NOT NULL COMMENT 'Nombre de la empresa a la que pertenece el domicilio fiscal registrado en la base de datos del sistema.',
-  PRIMARY KEY (`iddatosfacturacion`),
-  KEY `fk_datos_empresa` (`idempresa`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `direccioncliente`
 --
 
@@ -183,24 +163,6 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   KEY `fk_empresa_confvista` (`idconfvista`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `factcliente`
---
-
-CREATE TABLE IF NOT EXISTS `factcliente` (
-  `idfactcliente` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador único e irrepetible que se le asignará a cada factura emitida y registrada en la base de datos del sistema (SWG).',
-  `razon` varchar(45) NOT NULL COMMENT 'Nómbre fiscal que se le asignará a la factura registradaen la base de datos del sistema.',
-  `rfc` varchar(45) NOT NULL COMMENT 'Registro Federal de Contribullentes asignado por la SHCP a cada cliente que se registre en la base de datos del sistema.',
-  `direccion` varchar(45) NOT NULL COMMENT 'Domicilio fiscal registrado ante la SHCP de cada cliente que se agrege a la base de datos del sistema.',
-  `municipio` varchar(45) NOT NULL COMMENT 'Municipo al que pertenece el domicilo fiscal registrado de cada cliente en la base de datos del sistema.',
-  `estado` varchar(45) NOT NULL COMMENT 'Estado al que pertenece el domicilo fiscal registrado de cada cliente en la base de datos del sistema.',
-  `status` tinyint(1) NOT NULL COMMENT 'Estado que guarda el registro de cada factura de un cliente dentro de la base de datos del sistema.',
-  `idcliente` int(11) NOT NULL COMMENT 'Nombre no necesariamente fiscal de cada cliente al que le pertenece la factura registradaen la base de datos del sisitema.',
-  PRIMARY KEY (`idfactcliente`),
-  KEY `fk_facliente_cliente` (`idcliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -223,7 +185,6 @@ CREATE TABLE IF NOT EXISTS `nivel` (
 CREATE TABLE IF NOT EXISTS `productos` (
   `idproductos` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Número identificador único e irrepetible que se le asignará a cada producto que se registre en la base de datos del sistema (SWG).',
   `nombre` varchar(25) NOT NULL COMMENT 'Nombre del producto registrado en la base de datos del sisitema.',
-  `resumen` varchar(50) NOT NULL COMMENT 'Nombre corto o comercial con el que se identifica a cada producto registrado en la base de datos del sisitema.',
   `descripcion` text NOT NULL COMMENT 'Breve descripción de cada producto registrado en la base de datos del sistema.',
   `cantidad` int(11) NOT NULL COMMENT 'Número de piezas de cada producto registradas en la base de datos del sisitema.',
   `precio` double NOT NULL COMMENT 'Precio unitario de venta de cada producto registrado en la base de datos del sisitema.',
@@ -298,12 +259,6 @@ ALTER TABLE `cuentas`
   ADD CONSTRAINT `fk_cuentas_empresa` FOREIGN KEY (`idempresa`) REFERENCES `empresa` (`idempresa`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `datosfacturacion`
---
-ALTER TABLE `datosfacturacion`
-  ADD CONSTRAINT `fk_datos_empresa` FOREIGN KEY (`idempresa`) REFERENCES `empresa` (`idempresa`) ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `direccioncliente`
 --
 ALTER TABLE `direccioncliente`
@@ -321,12 +276,6 @@ ALTER TABLE `empleados`
 --
 ALTER TABLE `empresa`
   ADD CONSTRAINT `fk_empresa_confvista` FOREIGN KEY (`idconfvista`) REFERENCES `confvista` (`idconfvista`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `factcliente`
---
-ALTER TABLE `factcliente`
-  ADD CONSTRAINT `fk_facliente_cliente` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idcliente`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `productos`
