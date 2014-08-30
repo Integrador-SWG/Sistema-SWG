@@ -83,7 +83,7 @@
       <form class="form-signin" action='valida_login.php' method="post" name="acceder">
 
         <h2 class="form-signin-heading">
-            <center><div class="alert alert-error"><a class="close">&times;</a>
+            <center><div class="alert alert-error"></a>
                 USUARIO INACTIVO
             </div></center>
         </h2>

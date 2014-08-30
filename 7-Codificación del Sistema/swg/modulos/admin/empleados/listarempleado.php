@@ -68,13 +68,12 @@ session_start('user');
         <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
-                      <th>Id Usuario</th>
+                      <th>Id Administrador</th>
                       <th>Nombre</th>
                       <th>Apellido</th>
                       <th>Usuario</th>
                       <th>Contraseña</th>
                       <th>Tel&eacute;fono Celular</th>
-                      <th>Correo Electr&oacute;nico</th>
                       <th>Id Nivel</th>
                       <th>Estatus</th>
                       <th>Acci&oacute;n</th>
@@ -84,9 +83,9 @@ session_start('user');
                   <?php 
              include '../../basedatos.php';
              $pdo = Database::connect();
-             $sql = 'SELECT cliente.idusuario, cliente.nombre, cliente.apellido, usuario.user, usuario.pass, 
-             cliente.telefono, cliente.correo, usuario.idnivel, usuario.estatus FROM cliente INNER JOIN usuario ON 
-             cliente.idusuario = usuario.idusuario WHERE idnivel = "empleado"';
+             $sql = 'SELECT empleados.idusuario, empleados.nombre, empleados.apellido, usuario.user, usuario.pass, 
+             empleados.telefono, usuario.idnivel, usuario.estatus FROM empleados INNER JOIN usuario ON 
+             empleados.idusuario = usuario.idusuario WHERE idnivel = "empleado"';
              //$sql = 'SELECT * FROM cliente ORDER BY idcliente DESC';
              foreach ($pdo->query($sql) as $row) {
                   echo '<tr>';
@@ -96,7 +95,6 @@ session_start('user');
                   echo '<td>'. $row['user'] . '</td>';
                   echo '<td>'. $row['pass'] . '</td>';
                   echo '<td>'. $row['telefono'] . '</td>';
-                  echo '<td>'. $row['correo'] . '</td>';
                   echo '<td>'. $row['idnivel'] . '</td>';
                   echo '<td>'. $row['estatus'] . '</td>';
                   

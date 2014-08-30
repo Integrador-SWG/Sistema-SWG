@@ -104,7 +104,9 @@ session_start('user');
                   echo '<td width=160>';
                   echo '<a class="btn btn-warning" href="vercliente.php?idusuario='.$row['idusuario'].'">Ver</a>';
                   echo '&nbsp;';
-                  echo '<a class="btn btn-success" href="actualizarcliente.php?idusuario='.$row['idusuario'].'">Actualizar</a>';
+                  if (($_SESSION['idnivel']=="administrador")){
+                   echo '<a class="btn btn-success" href="actualizarcliente.php?idusuario='.$row['idusuario'].'">Actualizar</a>';
+                  }
                   /*echo '&nbsp;';
                   echo '<a class="btn btn-danger" href="eliminarcliente.php?idcliente='.$row['idcliente'].'">Eliminar</a>';*/
                   echo '</td>';

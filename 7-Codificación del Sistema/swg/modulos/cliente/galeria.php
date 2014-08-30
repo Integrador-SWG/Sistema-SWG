@@ -1,5 +1,6 @@
 <?php
 include ('../funciones.php');
+include ('../basedatos.php');
 session_start('user');
 
 ?>

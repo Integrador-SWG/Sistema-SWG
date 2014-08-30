@@ -101,13 +101,6 @@ session_start('user');
     $sql = 'SELECT cliente.idusuario, cliente.nombre, cliente.apellido, usuario.user, usuario.pass, 
              cliente.telefono, cliente.correo, usuario.idnivel, usuario.estatus FROM cliente INNER JOIN usuario ON 
              cliente.idusuario = usuario.idusuario WHERE usuario.idusuario = ?';
-
-
-/*SELECT  (SELECT COUNT(*) FROM   user_table) AS tot_user,
-    (SELECT COUNT(*) FROM   cat_table) AS tot_cat,
-    (SELECT COUNT(*)FROM   course_table) AS tot_course*/
-
-
     
     $q = $pdo->prepare($sql);
     $q->execute(array($idusuario));

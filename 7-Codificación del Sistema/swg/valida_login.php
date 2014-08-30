@@ -16,12 +16,15 @@ if (conexiones($user, $pass, $idnivel="cliente", $estatus="1")){
 			//si es valido accedemos a empleado.php
 				header('Location:modulos/admin/index.php');
 					}elseif (conexiones($user, $pass, $idnivel="cliente", $estatus="0")) {
+						session_destroy();
 							//si es valido accedemos a empleado.php
 								header('Location:inactivo.php');
 									}elseif (conexiones($user, $pass, $idnivel="administrador", $estatus="0")) {
+										session_destroy();
 											//si es valido accedemos a empleado.php
 											header('Location:inactivo.php');
 												}elseif (conexiones($user, $pass, $idnivel="empleado", $estatus="0")) {
+													session_destroy();
 														//si es valido accedemos a empleado.php
 														header('Location:inactivo.php');
 															}

@@ -9,9 +9,9 @@ if ( !empty($_POST)) {
     $nombreError = null;
     $apellidoError = null;
     $telefonoError = null;
-    $correoError = null;
+    //$correoError = null;
     $estatusError = null;
-    //$idusuarioError = null;
+    $idempresaError = null;
 
     $userError = null;
     $passError = null;
@@ -23,9 +23,9 @@ if ( !empty($_POST)) {
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $telefono = $_POST['telefono'];
-    $correo = $_POST['correo'];
+//    $correo = $_POST['correo'];
     $estatus = $_POST['estatus'];
-    //$idusuario = $_POST['idusuario'];
+    $idempresa = $_POST['idempresa'];
 
     $user = $_POST['user'];
     $pass = $_POST['pass'];
@@ -56,18 +56,43 @@ if ( !empty($_POST)) {
       $telefonoError = 'Por favor, digite 10 números';
       $valid = false;
     }
+
+    if (empty($idempresa)) {
+      $idempresaError = 'Por favor, ingrese un idempresa!';
+      $valid = false;
+    }
     
-    if (empty($correo)) {
+    /*if (empty($correo)) {
       $correoError = 'Por favor, ingrese un correo electrónico!';
       $valid = false;
     } else if ( !filter_var($correo,FILTER_VALIDATE_EMAIL) ) {
       $correoError = 'Por favor, ingrese un correo electrónico válido!';
       $valid = false;
-    }
+    }*/
 
     //estatus no se va a mostrar en el formulario
 
     //idusuario no se va a mostrar en el formulario
+
+        $pdo = Database::connect();
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $sql = "SELECT COUNT(*) FROM usuario";
+        if ($res = $pdo->query($sql)) {
+          if ($res->fetchColumn() > 0) {
+            $sql = "SELECT user FROM usuario";
+            foreach ($pdo->query($sql) as $row) {
+              if($user==$row['user']){
+                    $userError = 'Usuario en uso, por favor escriba otro!';
+                    $valid = false;
+              }else{
+                    
+                  }
+            }
+          }
+        }
+        $res = null;
+        $pdo = null;
+      Database::disconnect();
 
     if (empty($user)) {
       $userError = 'Por favor, ingrese un usuario!';
@@ -105,32 +130,30 @@ if ( !empty($_POST)) {
       //primero la de usuario
       $sql = "INSERT INTO usuario (user,pass,estatus,idnivel) values(?, ?, ?, ?)";
       $q = $pdo->prepare($sql);
-      $q->execute(array($user,$pass,$estatus,$idnivel));
+      $q->execute(array($user,$pass,$estatus,$idnivel));      
       $resultado = $pdo->lastInsertId();
 
       //despues la de cliente
-      $sql = "INSERT INTO cliente (nombre,apellido,telefono,correo,estatus,idusuario) values(?, ?, ?, ?, ?, ?)";
+      $sql = "INSERT INTO empleados (nombre,apellido,telefono,estatus,idempresa,idusuario) values(?, ?, ?, ?, ?, ?)";
       $q = $pdo->prepare($sql);
-      $q->execute(array($nombre,$apellido,$telefono,$correo,$estatus,$resultado));
+      $q->execute(array($nombre,$apellido,$telefono,$estatus,$idempresa,$resultado));
 
       Database::disconnect();
-//usa la funcion conexiones() que se ubica dentro de funciones.php
-if (conexiones($user, $pass, $idnivel="cliente", $estatus="1")){
-	//si es valido accedemos a index.php
-	header('Location:../clientes/listarcliente.php');
-} elseif (conexiones($user, $pass, $idnivel="administrador", $estatus="1")) {
-		//si es valido accedemos a administrador.php
-	header('Location:listaradministrador.php');
-		}elseif (conexiones($user, $pass, $idnivel="empleado", $estatus="1")) {
-			//si es valido accedemos a empleado.php
-				header('Location:../empleados/listarempleado.php');
-					}
-else {
-	//si no es valido volvemos al formulario inicial
-	header('Location: altaadministrador.php');
-}
+                header('Location: ../index.php');
      }
+  }else {
+    $pdo = Database::connect();
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = 'SELECT idempresa FROM empresa';
+    
+    $q = $pdo->prepare($sql);
+    $data = $q->fetch(PDO::FETCH_ASSOC);
+    $idempresa = $data['idempresa'];
 
+    $sql = $pdo->prepare("SELECT idempresa FROM empresa");
+    $sql->execute();
+    $data = $sql->fetchAll();
+    Database::disconnect();
   }
         
 ?>
@@ -169,7 +192,7 @@ else {
     <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <?php include_once "../menu/m_salir.php"; ?>
-        <?php include_once "../menu/m_listaradministrador.php"; ?>
+        <?php include_once "../menu/m_altaadministrador.php"; ?>
             <!-- /.navbar-collapse -->
         </nav>
 
@@ -231,16 +254,6 @@ else {
               </div>
             </div>
 
-            <div class="form-group <?php echo !empty($correoError)?'error':'';?>">
-              <label for="correo" class="col-lg-2 control-label">Correo Electr&oacute;nico: </label>
-              <div class="col-lg-10" >
-              <input label name="correo" class="form-control" type="text" placeholder="Correo Electr&oacute;nico" value="<?php echo !empty($correo)?$correo:'';?>">
-                  <?php if (!empty($correoError)): ?>
-                    <span class="help-inline"><?php echo $correoError;?></span>
-                  <?php endif; ?>
-              </div>
-            </div>
-
             <div class="form-group <?php echo !empty($userError)?'error':'';?>">
               <label for="user" class="col-lg-2 control-label">Usuario: </label>
               <div class="col-lg-10" >
@@ -271,6 +284,22 @@ else {
               </div>
             </div>
 
+            <div class="form-group <?php echo !empty($idempresaError)?'error':'';?>">
+              <label for="idempresa" class="col-lg-2 control-label">Id Empresa: </label>
+              <div class="col-lg-10" >
+              <select name="idempresa" class="form-control">
+                  <?php foreach ($data as $row): ?>
+                    <option name="idempresa"<?php if($row["idempresa"]==$idempresa){
+                      echo 'selected ="selected"';
+                      } ?>><?=$row["idempresa"]?></option>
+                  <?php endforeach ?>
+            </select>
+                  <?php if (!empty($idempresaError)): ?>
+                    <span class="help-inline"><?php echo $idempresaError;?></span>
+                  <?php endif; ?>
+              </div>
+            </div>
+
 
               <div class="form-group <?php echo !empty($idnivelError)?'error':'';?>">
               <label for="idnivel" class="col-lg-2 control-label">Id Nivel: </label>
@@ -280,7 +309,7 @@ else {
                   <!--<input name="idnivel" class="span3" type="hidden" value="administrador">-->
                     <option input name="idnivel" value="administrador">administrador</option>
                     <option input name="idnivel" value="empleado">empleado</option>
-                    <option input name="idnivel" value="cliente">cliente</option>
+                    <!--<option input name="idnivel" value="cliente">cliente</option>-->
                   </select> 
                   <?php if (!empty($idnivelError)): ?>
                     <span class="help-inline"><?php echo $idnivelError;?></span>

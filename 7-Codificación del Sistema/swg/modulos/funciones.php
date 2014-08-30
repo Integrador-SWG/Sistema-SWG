@@ -15,6 +15,7 @@ function conexiones($user, $pass, $idnivel, $estatus) {
 		session_start();
 		//configurar un elemento usuario dentro del arreglo global $_SESSION
 		$_SESSION['user']=$user;
+		$_SESSION['idnivel']=$idnivel;
 		//retornar verdadero
 		return true;
 	} else {
@@ -28,6 +29,9 @@ function verificar_usuario(){
 	session_start();
 	//comprobar la existencia del usuario
 	if ($_SESSION['user']){
+		return true;
+	}
+	if ($_SESSION['idnivel']){
 		return true;
 	}
 }

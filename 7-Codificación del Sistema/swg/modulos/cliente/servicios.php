@@ -1,5 +1,6 @@
 <?php
 include ('../funciones.php');
+include ('../basedatos.php');
 session_start('user');
 
 ?>
@@ -44,67 +45,58 @@ session_start('user');
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
-        <h1>Servicios <small>!Disfruta de nuestros servicios¡</small></h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a href="#" class="btn btn-primary btn-large">Aprender más &raquo;</a></p>
+        <!--<h1>Servicios <small>!Disfruta de nuestros servicios¡</small></h1>-->
+        
+        <img src="../../img/servicios.jpg" alt="servicios" class="img-responsive">
+        <br>
+        <br>
+        <p align="justify">Como usuario de SWG siempre encontrarás un instructor profesional en nuestras instalaciones, disponible para 
+        ayudarte diseñando tus rutinas, supervisando tu técnica para ejercitarte y mostrándote cómo utilizar los aparatos de forma 
+        segura.<br>
+        <br>Si lo deseas, también puedes contar con un instructor personalizado, que esté disponible y te atienda sólo a ti animándote 
+        y aconsejándote a mejorar de forma intensiva tu performance y alcanzar tus metas y objetivos personales. En otras palabras, 
+        puedes tener tu propio “trainer” que te traiga “cortito” mientras realizas tus rutinas personalizadas de ejercicio.</p>
       </div>
 
       <!-- Example row of columns -->
       <div class="row">
-        <div class="span6">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-warning" href="#">Ver detalles &raquo;</a></p>
+        <div class="span3">
+          <h2>REGADERAS</h2>
+          <img src="../../img/regaderas.jpg" alt="servicios" class="img-responsive" width="234" height="112">
+          <p align="justify">Date un caliente o refrescante, relájate en nuestras cómodas istalaciones antes de ir al trabajo o después de tu entrenamiento, cuida tu salud todos los días.</p>
         </div>
         <div class="span3">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-success" href="#">Ver detalles &raquo;</a></p>
+          <h2>VAPOR</h2>
+          <img src="../../img/vapor.jpg" alt="servicios" class="img-responsive" width="234" height="112">
+          <p align="justify">El vapor de Gold´s Gym Mazanillo ayuda a eliminar las toxinas decuerpo y renueva las energías.</p>
        </div>
         <div class="span3">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-danger" href="#">Ver detalles &raquo;</a></p>
-          <!--<p><a class="btn btn-inverse" href="#">View details &raquo;</a></p>-->
-          <!--<p><a class="btn btn-info" href="#">View details &raquo;</a></p>-->
+          <h2>ALBERCA</h2>
+          <img src="../../img/alberca.jpg" alt="servicios" class="img-responsive" width="234" height="112">
+          <p align="justify">Refréscate y ejercítate en nuestra alberca semi-olímpica, exclusivamente de entrenamiento sin distracciones  y con clases incluidas con los mejores maestros calificados.</p>
         </div>
-      </div>
-
-      <hr>
+      
       <!-- Final row "fila" -->
 
       <!-- Fila 2 -->
-      <div class="row">
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-success" href="#">Ver detalles &raquo;</a></p>
+        <div class="span3">
+          <h2>LOCKERS</h2>
+          <img src="../../img/lockers.jpg" alt="servicios" class="img-responsive" width="234" height="112">
+          <p align="justify">Están diseñados para resguardar de manera privada y personal  todas tus pertenencias.</p>
        </div>
-        <div class="span6 offset2">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-danger" href="#">Ver detalles &raquo;</a></p>
-          <!--<p><a class="btn btn-inverse" href="#">View details &raquo;</a></p>-->
-          <!--<p><a class="btn btn-info" href="#">View details &raquo;</a></p>-->
+      </div>
+
+
+       <div class="row">
+        <div class="span6">
+          <h2>INSTRUCTOR PERSONALIZADO</h2>
+          <img src="../../img/instructor.jpg" alt="servicios" class="img-responsive">
+          <p align="justify">La profesionalidad de un instructor a tu servicio, él o ella crearán una rutina específica para tus necesidades, apoyo exclusivo para lograr tus metas.</p>
         </div>
       </div>
 
       <hr>
       <!-- Final 2 row "fila" -->
-
-      <!-- Final 3 -->
-      <div class="row">
-        <div class="span9">
-        <h1>Columna nivel 1</h1>
-        <div class="row">
-          <div class="span6"><h2>Nivel 2</h2></div>
-          <div class="span3"><h2>Nivel 2</h2></div>
-          </div>
-          </div>
-      </div>
-
-      <hr>
-      <!-- Final 3 row "fila" -->
 
 <!--Footer>-->
 

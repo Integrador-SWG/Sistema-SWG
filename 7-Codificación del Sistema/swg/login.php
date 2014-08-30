@@ -1,4 +1,5 @@
 <?php 
+include ('modulos/basedatos.php');
 
   if ( !empty($_POST)) {
     // keep track validation errors
@@ -100,7 +101,7 @@
         <div class="control-group <?php echo !empty($passError)?'error':'';?>">
               <label class="control-label">Contrase&ntilde;a</label>
               <div class="controls">
-                  <input name="pass" class="span3" type="password" maxlength="8" placeholder="Contraseña (Max. 8)" value="<?php echo !empty($pass)?$pass:'';?>">
+                  <input name="pass" class="span3" type="password" placeholder="Contraseña (Max. 8)" value="<?php echo !empty($pass)?$pass:'';?>">
                   <?php if (!empty($passError)): ?>
                     <span class="help-inline"><?php echo $passError;?></span>
                   <?php endif; ?>

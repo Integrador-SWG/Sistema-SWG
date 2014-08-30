@@ -1,5 +1,7 @@
 <?php
 include ('../funciones.php');
+include ('../basedatos.php');
+
 session_start('user');
 
 ?>
@@ -47,116 +49,38 @@ session_start('user');
         <h1>Productos</h1>
       </div>
 
-      <!-- Example row of columns -->
+      <!-- Miniatura 1 -->                        
       <div class="row">
-        <div class="span12">
-          <img src="http://placehold.it/1200x400" />
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-warning" href="#">Ver detalles &raquo;</a></p>
-        </div>
-      <hr>
-      <!-- Final Fila 1-->
-
-      <!-- Miniatura 1 -->
-      <div class="row">
-        <div class="span3">
-          <div class="thumbnail">
-              <img src="http://placehold.it/300x200" />
-                <div class="caption">
-           <h3>Etiqueta Item</h3> 
-           <p>...</p>
-           <p><a href="#" class="btn btn-primary">Comprar</a> <a href="#" class="btn btn-default">Ver</a></p>
-                </div>
+        
+        <?php 
+        $pdo = Database::connect();
+          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $result = $pdo->prepare("SELECT * FROM productos");
+          $result->execute();
+          while ($row = $result->fetch(PDO::FETCH_ASSOC))
+            {Database::disconnect();?>
+          <div class="span4">
+            <div class="thumbnail"> 
+            <center>
+              <a href="verproductos.php?idproductos=<?php  echo $row['idproductos'];?>" class="thumbnail">
+                <img src="../admin/productos/<?php echo $row['imagen'];?>" alt="productos" class="img-rounded" style="min-height:190px; height: 100px"> 
+              </a>
+              </center>                 
+              <div class="caption">
+                <h3><?php echo $row['nombre'];?></h3>
+                <p><?php echo $row['descripcion'];?></p>
+                <?php error_reporting(0); if ($_SESSION['user'] == true): ?>
+                 <p><a href="carritocompras.php?idproductos=<?php  echo $row['idproductos'];?>" class="btn btn-info">Añadir</a> <a href="verproductos.php?idproductos=<?php  echo $row['idproductos'];?>" class="btn btn-success">Ver</a></p>
+                 <?php else : ?>
+                  <p><a href="verproductos.php?idproductos=<?php  echo $row['idproductos'];?>" class="btn btn-success">Ver</a></p>
+                  <?php endif ?>        
+              </div>
+            </div>          
           </div>
-        </div>
-
-        <div class="span3">
-          <div class="thumbnail">
-              <img src="http://placehold.it/300x200" />
-                <div class="caption">
-           <h3>Etiqueta Item</h3> 
-           <p>...</p>
-           <p><a href="#" class="btn btn-primary">Comprar</a> <a href="#" class="btn btn-default">Ver</a></p>
-                </div>
-          </div>
-        </div>
-
-        <div class="span3">
-          <div class="thumbnail">
-              <img src="http://placehold.it/300x200" />
-                <div class="caption">
-           <h3>Etiqueta Item</h3> 
-           <p>...</p>
-           <p><a href="#" class="btn btn-primary">Comprar</a> <a href="#" class="btn btn-default">Ver</a></p>
-                </div>
-          </div>
-        </div>
-
-        <div class="span3">
-          <div class="thumbnail">
-              <img src="http://placehold.it/300x200" />
-                <div class="caption">
-           <h3>Etiqueta Item</h3> 
-           <p>...</p>
-           <p><a href="#" class="btn btn-primary">Comprar</a> <a href="#" class="btn btn-default">Ver</a></p>
-                </div>
-          </div>
-        </div>
-
+            <?php }?>           
+            
+            </div>
       </div>
-
-      <hr>
-        <!-- Final miniatura 1-->
-
-        <!-- Miniatura 2 -->
-      <div class="row">
-        <div class="span3">
-          <div class="thumbnail">
-              <img src="http://placehold.it/300x200" />
-                <div class="caption">
-           <h3>Etiqueta Item</h3> 
-           <p>...</p>
-           <p><a href="#" class="btn btn-primary">Comprar</a> <a href="#" class="btn btn-default">Ver</a></p>
-                </div>
-          </div>
-        </div>
-
-        <div class="span3">
-          <div class="thumbnail">
-              <img src="http://placehold.it/300x200" />
-                <div class="caption">
-           <h3>Etiqueta Item</h3> 
-           <p>...</p>
-           <p><a href="#" class="btn btn-primary">Comprar</a> <a href="#" class="btn btn-default">Ver</a></p>
-                </div>
-          </div>
-        </div>
-
-        <div class="span3">
-          <div class="thumbnail">
-              <img src="http://placehold.it/300x200" />
-                <div class="caption">
-           <h3>Etiqueta Item</h3> 
-           <p>...</p>
-           <p><a href="#" class="btn btn-primary">Comprar</a> <a href="#" class="btn btn-default">Ver</a></p>
-                </div>
-          </div>
-        </div>
-
-        <div class="span3">
-          <div class="thumbnail">
-              <img src="http://placehold.it/300x200" />
-                <div class="caption">
-           <h3>Etiqueta Item</h3> 
-           <p>...</p>
-           <p><a href="#" class="btn btn-primary">Comprar</a> <a href="#" class="btn btn-default">Ver</a></p>
-                </div>
-          </div>
-        </div>
-
-      </div>
-
       <hr>
         <!-- Final miniatura 2-->
 

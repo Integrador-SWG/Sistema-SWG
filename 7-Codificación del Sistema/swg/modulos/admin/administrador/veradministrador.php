@@ -13,9 +13,9 @@ session_start('user');
   } else {
     $pdo = Database::connect();
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "SELECT cliente.idusuario, cliente.nombre, cliente.apellido, usuario.user, usuario.pass, 
-             cliente.telefono, cliente.correo, usuario.idnivel, usuario.estatus FROM cliente INNER JOIN usuario ON 
-             cliente.idusuario = usuario.idusuario WHERE cliente.idusuario = ?";
+    $sql = "SELECT empleados.idusuario, empleados.nombre, empleados.apellido, usuario.user, usuario.pass, 
+             empleados.telefono, usuario.idnivel, usuario.estatus FROM empleados INNER JOIN usuario ON 
+             empleados.idusuario = usuario.idusuario WHERE empleados.idusuario = ?";
     $q = $pdo->prepare($sql);
     $q->execute(array($idusuario));
     $data = $q->fetch(PDO::FETCH_ASSOC);
@@ -137,14 +137,6 @@ session_start('user');
               <div class="col-lg-10">
                 <label class="form-control">
                 <?php echo $data['telefono'];?>
-              </div>
-            </div>
-
-            <div class="form-group">
-            <label for="correo" class="col-lg-2 control-label">Correo: </label>
-              <div class="col-lg-10">
-                <label class="form-control">
-                <?php echo $data['correo'];?>
               </div>
             </div>
 

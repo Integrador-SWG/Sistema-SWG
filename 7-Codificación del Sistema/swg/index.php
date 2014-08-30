@@ -1,5 +1,7 @@
 <?php
 include ('modulos/funciones.php');
+include ('modulos/basedatos.php');
+
 session_start('user');
 
 ?>
@@ -48,27 +50,66 @@ session_start('user');
 
           <div class="carousel-inner">
                 <div class="item active">
-                        <!--<a class="brand" href="index.html"><img src='img/greenpower.png' width='1200' height='480' title='SWG' border='0'></a>-->
-                        <img src="img/slide2.png" alt="orange" class="img-responsive">
+                              <?php
+                                    $pdo = Database::connect();
+                                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                      $sql=("SELECT * FROM confvista WHERE idconfvista = 1");
+                                      $stmt = $pdo->prepare($sql);
+                                      $stmt->execute();
+                                      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                      Database::disconnect();
+                                      ?>
+                                       <div class="producto">
+                                        <center>
+                                          <img src="imagenes/<?php echo $row['slide1'];?>" alt="carousel" 
+                                          class="img-responsive"><br>
+                                       </center>
+                                      </div>
                       <div class="carousel-caption">
-                          <p class="lead">Somos lo que repetidamente hacemos. <br>La excelencia, entonces, no es un acto sino un hábito.</p>
+                          <p class="lead"><span><?php echo $row['info1'];?></span><br></p>
                           <!--<a class="btn btn-large btn-primary" href="#">Leer más</a>-->
                       </div>
                 </div>
  
                 <div class="item">
-                        <!--<a class="brand" href="index.html"><img src='img/fitnessgym.png' width='1200' height='480' title='SWG' border='0'></a>-->
-                        <img src="img/slide0.png" alt="orange" class="img-responsive">
+                        <?php
+                                    $pdo = Database::connect();
+                                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                      $sql=("SELECT * FROM confvista WHERE idconfvista = 1");
+                                      $stmt = $pdo->prepare($sql);
+                                      $stmt->execute();
+                                      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                      Database::disconnect();
+                                      ?>
+                                       <div class="producto">
+                                        <center>
+                                          <img src="imagenes/<?php echo $row['slide2'];?>" alt="carousel" 
+                                          class="img-responsive"><br>
+                                       </center>
+                                      </div>
                         <div class="carousel-caption">
-                          <p class="lead">Si ella puede hacerlo, ¿Cu&aacute;l es tu excusa?</p>
+                          <p class="lead"><span><?php echo $row['info2'];?></span><br></p>
                       </div>
                 </div>
  
                 <div class="item">
-                        <!--<a class="brand" href="index.html"><img src='img/caminadoras.png' width='1200' height='480' title='SWG' border='0'></a>-->
-                        <img src="img/slide1.png" alt="orange" class="img-responsive">
+                        <?php
+                                    $pdo = Database::connect();
+                                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                      $sql=("SELECT * FROM confvista WHERE idconfvista = 1");
+                                      $stmt = $pdo->prepare($sql);
+                                      $stmt->execute();
+                                      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                      Database::disconnect();
+                                      ?>
+                                       <div class="producto">
+                                        <center>
+                                          <img src="imagenes/<?php echo $row['slide3'];?>" alt="carousel" 
+                                          class="img-responsive"><br>
+                                       </center>
+                                      </div>
                         <div class="carousel-caption">
-                          <p class="lead"></p>
+                          <p class="lead"><span><?php echo $row['info3'];?></span><br></p>
                       </div>
                 </div>
           </div>
@@ -100,31 +141,31 @@ session_start('user');
       <div class="row">
         <div class="span4">
           <h2>Vídeo del día</h2>
-
           <div class="js-video [vimeo, widescreen]">
               <!--<iframe width="375" height="225" src="//www.youtube.com/watch?v=aVKc54n_4aM" frameborder="0" allowfullscreen></iframe>-->
-              <iframe width="375" height="225" src="//www.youtube.com/embed/aVKc54n_4aM?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+              <iframe class="col-lg-2 col-md-6 col-sm-12 col-xs-12" width="375" height="225" src="//www.youtube.com/embed/aVKc54n_4aM?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
           </div>
           <p align="justify">Nunca pares, nunca te conformes, hasta que lo bueno sea mejor y lo mejor excelente.</p>
-
-
       </div>
 
         <div class="span4">
           <h2>Suplementos</h2>
           <!--<img src="http://placehold.it/375x225" />-->
-          <img src="img/suplemen.jpg" alt="orange" class="img-responsive">
+          <img src="img/suplemen.jpg" alt="imagenindex">
           <p align="justify">Estos suplementos te ayudan a mantener un estado físico y de salud óptimo para que puedas realizar tus actividades diariamente, ayudan a las articulaciones, desintoxican el organismo, a restablecer niveles hormonales normales, ayudan a mejorar el aprovechamiento de los nutrientes dentro del organismo y a llenar esos espacios que te faltan por cumplir para tener una salud al 100%.</p>
-          <p align="justify"><a class="btn  btn-success" href="productos.html">Ver detalles &raquo;</a></p>
+          <p align="justify"><a class="btn  btn-success" href="modulos/cliente/productos.php">Ver detalles &raquo;</a></p>
        </div>
         <div class="span4">
           <h2>Conocenos</h2>
           <!--<img src="http://placehold.it/375x225" />-->
-          <img src="img/conocenos.png" alt="orange" class="img-responsive">
+          <img src="img/conocenos.png" alt="imagenindex">
           <p align="justify">Suplementos SWG somos una tienda en línea de Suplementos Alimenticios y artículos deportivos. Contamos con la característica principal a la que debemos gran parte de nuestro éxito: ofrecer los PRECIOS MAS BAJOS DEL MERCADO.</p>
-          <p><a class="btn btn-danger" href="quienessomos.html">Ver detalles &raquo;</a></p>
+          <p><a class="btn btn-danger" href="modulos/cliente/conocenos.php">Ver detalles &raquo;</a></p>
         </div>
       </div>
+
+
+      <!--<img src="modulos/admin/productos/584656_coca_cola.png"><br>-->
 
 </div> <!-- /container -->
 

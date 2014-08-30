@@ -1,5 +1,7 @@
 <?php
 include ('../funciones.php');
+include ('../basedatos.php');
+
 session_start('user');
 ?>
 
@@ -72,15 +74,21 @@ session_start('user');
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-comments fa-5x"></i>
+                                        <i class="fa fa-users fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">26</div>
-                                        <div>Nuevos Comentarios!</div>
+                                    <?php
+                                            $pdo = Database::connect();
+                                            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                            $nRows = $pdo->query('SELECT COUNT(*) FROM cliente')->fetchColumn(); 
+                                            Database::disconnect();
+                                    ?>
+                                        <div class="huge"><?php echo $nRows;?></div>
+                                        <div>Número de clientes!</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="clientes/listarcliente.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -97,12 +105,18 @@ session_start('user');
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">12</div>
-                                        <div>Nuevas Tareas!</div>
+                                        <?php
+                                            $pdo = Database::connect();
+                                            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                            $nRows = $pdo->query('SELECT COUNT(*) FROM proveedor')->fetchColumn(); 
+                                            Database::disconnect();
+                                    ?>
+                                        <div class="huge"><?php echo $nRows;?></div>
+                                        <div>Número de proveedor!</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="proveedor/listarproveedor.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -119,12 +133,18 @@ session_start('user');
                                         <i class="fa fa-shopping-cart fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">124</div>
-                                        <div>Nuevos Pedidos!</div>
+                                        <?php
+                                            $pdo = Database::connect();
+                                            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                            $nRows = $pdo->query('SELECT COUNT(*) FROM compra')->fetchColumn(); 
+                                            Database::disconnect();
+                                    ?>
+                                        <div class="huge"><?php echo $nRows;?></div>
+                                        <div>Número de compras!</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="empresa/listarcompra.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -138,15 +158,21 @@ session_start('user');
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-support fa-5x"></i>
+                                        <i class="fa fa-cubes fa-4x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">13</div>
-                                        <div>Entradas de Soporte!</div>
+                                        <?php
+                                            $pdo = Database::connect();
+                                            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                            $nRows = $pdo->query('SELECT COUNT(*) FROM productos')->fetchColumn(); 
+                                            Database::disconnect();
+                                    ?>
+                                        <div class="huge"><?php echo $nRows;?></div>
+                                        <div>Número de productos!</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="producto/listarproducto.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

@@ -18,8 +18,8 @@ session_start('user');
     $userError = null;
     $passError = null;
     $telefono = null;
-    $correoError = null;
     $idnivelError = null;
+    $idempresaError = null;
     $estatusError = null;
     
     // keep track post values
@@ -29,13 +29,12 @@ session_start('user');
     $user = $_POST['user'];
     $pass = $_POST['pass'];
     $telefono = $_POST['telefono'];
-    $correo = $_POST['correo'];
     $idnivel = $_POST['idnivel'];
+    $idempresa = $_POST['idempresa'];
     $estatus = $_POST['estatus'];
     
     // validate input
     $valid = true;
-        $valid = true;
     if (empty($nombre)) {
       $nombreError = 'Por favor, ingrese un nombre!';
       $valid = false;
@@ -57,12 +56,9 @@ session_start('user');
       $telefonoError = 'Por favor, digite 10 números';
       $valid = false;
     }
-    
-    if (empty($correo)) {
-      $correoError = 'Por favor, ingrese un correo electrónico!';
-      $valid = false;
-    } else if ( !filter_var($correo,FILTER_VALIDATE_EMAIL) ) {
-      $correoError = 'Por favor, ingrese un correo electrónico válido!';
+
+    if (empty($idempresa)) {
+      $idempresaError = 'Por favor, ingrese un idempresa!';
       $valid = false;
     }
 
@@ -77,7 +73,7 @@ session_start('user');
     }
 
     if (empty($idnivel)) {
-      $idnivelError = 'Por favor, ingrese una nivel!';
+      $idnivelError = 'Por favor, ingrese un nivel!';
       $valid = false;
     }
     
@@ -89,25 +85,18 @@ session_start('user');
       $q = $pdo->prepare($sql);
       $q->execute(array($user,$pass,$estatus,$idnivel,$idusuario));
 
-      $sql = "UPDATE cliente set nombre= ?, apellido = ?, telefono = ?, correo = ?, estatus = ? WHERE idusuario = ?";
+      $sql = "UPDATE empleados set nombre= ?, apellido = ?, telefono = ?, estatus = ?, idempresa = ? WHERE idusuario = ?";
       $q = $pdo->prepare($sql);
-      $q->execute(array($nombre, $apellido, $telefono, $correo, $estatus, $idusuario));
+      $q->execute(array($nombre, $apellido, $telefono, $estatus, $idempresa, $idusuario));
       Database::disconnect();
       header("Location: listaradministrador.php");
     }
   } else {
     $pdo = Database::connect();
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = 'SELECT cliente.idusuario, cliente.nombre, cliente.apellido, usuario.user, usuario.pass, 
-             cliente.telefono, cliente.correo, usuario.idnivel, usuario.estatus FROM cliente INNER JOIN usuario ON 
-             cliente.idusuario = usuario.idusuario WHERE usuario.idusuario = ?';
-
-
-/*SELECT  (SELECT COUNT(*) FROM   user_table) AS tot_user,
-    (SELECT COUNT(*) FROM   cat_table) AS tot_cat,
-    (SELECT COUNT(*)FROM   course_table) AS tot_course*/
-
-
+    $sql = 'SELECT empleados.idusuario, empleados.nombre, empleados.apellido, usuario.user, usuario.pass, 
+             empleados.telefono, usuario.idnivel, usuario.estatus FROM empleados INNER JOIN usuario ON 
+             empleados.idusuario = usuario.idusuario WHERE usuario.idusuario = ?';
     
     $q = $pdo->prepare($sql);
     $q->execute(array($idusuario));
@@ -117,13 +106,18 @@ session_start('user');
     $user = $data['user'];
     $pass = $data['pass'];
     $telefono = $data['telefono'];
-    $correo = $data['correo'];
+    //$idempresa = $data['idempresa'];
     $idnivel = $data['idnivel'];
+    //$idempresa = $data['idempresa'];
     $estatus = $data['estatus'];
 
     $smt = $pdo->prepare("SELECT idnivel FROM nivel");
     $smt->execute();
     $data = $smt->fetchAll();
+
+    $smt1 = $pdo->prepare("SELECT idempresa FROM empresa");
+    $smt1->execute();
+    $data1 = $smt1->fetchAll();
     
     Database::disconnect();
   }
@@ -250,12 +244,18 @@ session_start('user');
               </div>
             </div>
 
-            <div class="form-group <?php echo !empty($correoError)?'error':'';?>">
-              <label for="correo" class="col-lg-2 control-label">Correo Electr&oacute;nico: </label>
+            <div class="form-group <?php echo !empty($idempresaError)?'error':'';?>">
+              <label for="idempresa" class="col-lg-2 control-label">Id Empresa: </label>
               <div class="col-lg-10" >
-              <input label name="correo" class="form-control" type="text" placeholder="Correo Electr&oacute;nico" value="<?php echo !empty($correo)?$correo:'';?>">
-                  <?php if (!empty($correoError)): ?>
-                    <span class="help-inline"><?php echo $correoError;?></span>
+              <select name="idempresa" class="form-control">
+                  <?php foreach ($data1 as $row): ?>
+                    <option name="idempresa"<?php if($row["idempresa"]==$idempresa){
+                      echo 'selected ="selected"';
+                      } ?>><?=$row["idempresa"]?></option>
+                  <?php endforeach ?>
+            </select>
+                  <?php if (!empty($idempresaError)): ?>
+                    <span class="help-inline"><?php echo $idempresaError;?></span>
                   <?php endif; ?>
               </div>
             </div>
